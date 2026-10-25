@@ -1,0 +1,1073 @@
+<title>Aggregator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Dark-first, X-platform palette. Keep-style masonry cards. */
+  :root {
+    --bg: #000;
+    --surface: #16181c;
+    --surface-2: #1d1f23;
+    --border: #2f3336;
+    --fg: #e7e9ea;
+    --muted: #71767b;
+    --accent: #1d9bf0;
+    --chip: #202327;
+    --chip-active: #eff3f4;
+    --chip-active-fg: #0f1419;
+    color-scheme: dark;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; word-break: break-word; }
+  a:hover { text-decoration: underline; }
+
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+    padding-block: 12px;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    background: #000; z-index: 10;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .brand h1 {
+    margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -0.02em;
+  }
+  .brand small { color: var(--muted); font-weight: 500; }
+
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  input[type=search] {
+    flex: 1; min-width: 200px;
+    background: var(--surface);
+    border: 1px solid transparent;
+    color: var(--fg);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font: inherit;
+    outline: none;
+  }
+  input[type=search]:focus { border-color: var(--accent); background: #000; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip {
+    background: var(--chip); color: var(--fg);
+    border: 1px solid var(--border);
+    padding: 5px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; user-select: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .chip:hover { background: var(--surface-2); border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .chip.active { background: var(--chip-active); color: var(--chip-active-fg); border-color: var(--chip-active); }
+  .chip .n { color: var(--muted); font-weight: 500; margin-left: 4px; }
+  .chip.active .n { color: #536471; }
+
+  main { padding-block: 16px 60px; }
+
+  .grid {
+    column-count: 4;
+    column-gap: 14px;
+  }
+  @media (max-width: 1100px) { .grid { column-count: 3; } }
+  @media (max-width: 760px) { .grid { column-count: 2; } }
+  @media (max-width: 480px) { .grid { column-count: 1; } }
+
+  .card {
+    break-inside: avoid;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    background: var(--surface-2);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 1px rgba(29,155,240,0.15);
+    transform: translateY(-2px);
+  }
+  .card:active { transform: translateY(0) scale(0.995); transition-duration: 0.08s; }
+  .card h3 {
+    margin: 0 0 10px; font-size: 15px; font-weight: 800;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    letter-spacing: -0.01em;
+  }
+  .card h3 .tag {
+    font-size: 10px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .card .preview { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .card .preview li { font-size: 13.5px; line-height: 1.35; color: var(--fg); opacity: 0.92; }
+  .card .preview .more { color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+  /* Modal — Keep-style centered expansion */
+  .scrim {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 50;
+    padding: 20px;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  }
+  .scrim.open { display: flex; }
+  .scrim.visible { background: rgba(0,0,0,0.72); backdrop-filter: blur(6px); }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%; max-width: 560px;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    padding: 22px 24px 20px;
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+    transition: opacity 0.3s cubic-bezier(.2,.8,.2,1), transform 0.3s cubic-bezier(.2,.8,.2,1);
+  }
+  .scrim.visible .modal { opacity: 1; transform: none; }
+  .modal h2 {
+    margin: 0 0 4px; font-size: 20px; font-weight: 800; letter-spacing: -0.01em;
+  }
+  .modal .cat {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .modal ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .modal li {
+    font-size: 15px; line-height: 1.4;
+    position: relative;
+    padding: 8px 10px 8px 24px;
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .modal li::before {
+    content: "";
+    position: absolute;
+    left: 10px; top: 50%;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--muted);
+    transform: translateY(-50%);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .modal li:hover { background: var(--surface-2); }
+  .modal li:hover::before { background: var(--accent); transform: translateY(-50%) scale(1.4); }
+  .modal li a { display: block; color: var(--fg); }
+  .modal li:hover a { color: var(--accent); }
+  .modal li a:hover { text-decoration: none; }
+  .modal .close {
+    position: sticky; top: -22px; float: right;
+    background: transparent; color: var(--muted); border: 0;
+    font-size: 22px; cursor: pointer; padding: 2px 8px;
+    border-radius: 999px; line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .modal .close:hover { background: var(--chip); color: var(--fg); }
+
+  /* Editable title + category inputs */
+  .m-title, .m-cat {
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+    font: inherit;
+    outline: none;
+    display: block;
+    border-radius: 6px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .m-title {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.01em;
+    padding: 4px 8px; margin: 0 0 4px -8px; width: calc(100% + 8px);
+  }
+  .m-cat {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 4px 8px; margin: 0 0 16px -8px; width: calc(100% + 8px);
+  }
+  .m-title:hover, .m-cat:hover { background: var(--surface-2); }
+  .m-title:focus, .m-cat:focus { background: var(--surface-2); border-color: var(--accent); }
+
+  /* Link row actions */
+  .modal li { display: flex; align-items: center; gap: 4px; padding-right: 6px; }
+  .modal li a { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row-actions {
+    display: flex; gap: 2px; opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .modal li:hover .row-actions { opacity: 1; }
+  .row-actions button {
+    background: transparent; border: 0; color: var(--muted);
+    cursor: pointer; padding: 4px 7px; border-radius: 6px;
+    font-size: 13px; line-height: 1; font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .row-actions button:hover { background: var(--chip); color: var(--fg); }
+  .row-actions .del:hover { color: #f4212e; background: rgba(244,33,46,0.1); }
+
+  /* Inline edit mode for a row */
+  .modal li.editing { flex-direction: column; align-items: stretch; gap: 6px; padding: 10px; background: var(--surface-2); }
+  .modal li.editing::before { display: none; }
+  .modal li.editing input {
+    background: var(--bg); border: 1px solid var(--border); color: var(--fg);
+    padding: 7px 10px; border-radius: 6px; font: inherit; outline: none;
+    width: 100%;
+  }
+  .modal li.editing input:focus { border-color: var(--accent); }
+  .modal li.editing .edit-row { display: flex; gap: 6px; justify-content: flex-end; }
+  .modal li.editing .edit-row button {
+    background: var(--chip); border: 0; color: var(--fg);
+    padding: 6px 14px; border-radius: 999px; font: inherit; font-size: 12px;
+    font-weight: 700; cursor: pointer;
+    transition: filter 0.15s ease;
+  }
+  .modal li.editing .edit-row .save { background: var(--accent); color: #fff; }
+  .modal li.editing .edit-row button:hover { filter: brightness(1.15); }
+
+  /* "Add link" row at bottom of modal */
+  .add-row {
+    display: grid; grid-template-columns: 1fr 1fr auto;
+    gap: 6px; margin-top: 14px;
+    padding-top: 14px; border-top: 1px solid var(--border);
+  }
+  .add-row input {
+    background: var(--surface-2); border: 1px solid var(--border);
+    padding: 8px 10px; font-size: 14px; color: var(--fg);
+    font-family: inherit; border-radius: 6px; outline: none;
+    min-width: 0;
+  }
+  .add-row input:focus { border-color: var(--accent); background: var(--bg); }
+  .add-row .add-btn {
+    background: var(--accent); color: #fff; border: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    cursor: pointer; font-size: 22px; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: filter 0.15s ease, transform 0.15s ease;
+    align-self: center;
+  }
+  .add-row .add-btn:hover { filter: brightness(1.1); transform: scale(1.05); }
+  .add-row .add-btn:active { transform: scale(0.95); }
+
+  /* Modal footer */
+  .m-footer { margin-top: 12px; display: flex; justify-content: flex-end; }
+  .del-card {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 6px 14px; border-radius: 999px; cursor: pointer;
+    font: inherit; font-size: 12px; font-weight: 700;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .del-card:hover { color: #f4212e; border-color: #f4212e; background: rgba(244,33,46,0.08); }
+  .del-card.confirm { background: #f4212e; color: #fff; border-color: #f4212e; }
+
+  /* FAB — "add new card" */
+  .fab {
+    position: fixed;
+    right: max(24px, env(safe-area-inset-right, 0px));
+    bottom: max(24px, env(safe-area-inset-bottom, 0px));
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #fff; border: 0;
+    cursor: pointer; font-size: 28px; line-height: 1; font-family: inherit;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(29,155,240,0.4);
+    z-index: 40;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), filter 0.15s ease, box-shadow 0.25s ease;
+  }
+  .fab:hover { transform: scale(1.08); filter: brightness(1.08); box-shadow: 0 6px 22px rgba(29,155,240,0.55); }
+  .fab:active { transform: scale(0.95); }
+
+  /* Modal body — override alignment while editing */
+  .modal li .edit-view, .modal li .read-view { display: contents; }
+
+  /* --- Mode: view (default) vs manage --- */
+  /* The front page is read-only. Everything editable is hidden until manage mode. */
+  body:not(.manage) .fab,
+  body:not(.manage) .row-actions,
+  body:not(.manage) .add-row,
+  body:not(.manage) .m-footer { display: none; }
+  body:not(.manage) .m-title,
+  body:not(.manage) .m-cat {
+    pointer-events: none;
+    cursor: default;
+  }
+  body:not(.manage) .m-title:hover,
+  body:not(.manage) .m-cat:hover { background: transparent; border-color: transparent; }
+
+  /* Manage toggle in header */
+  .mode-btn {
+    background: var(--chip); color: var(--fg);
+    border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 999px;
+    font: inherit; font-size: 13px; font-weight: 700;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .mode-btn:hover { background: var(--surface-2); border-color: var(--accent); color: var(--accent); }
+  body.manage .mode-btn {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  body.manage .mode-btn:hover { filter: brightness(1.1); }
+
+  /* Subtle hint banner in manage mode */
+  .manage-hint {
+    display: none;
+    background: rgba(29,155,240,0.08);
+    border: 1px solid rgba(29,155,240,0.25);
+    color: var(--accent);
+    padding: 8px 14px; border-radius: 10px;
+    font-size: 13px; font-weight: 600;
+    margin-top: 10px;
+  }
+  body.manage .manage-hint { display: block; }
+
+  .empty { color: var(--muted); text-align: center; padding: 40px; }
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="4"  width="18" height="4" rx="1.2" fill="currentColor"/>
+        <rect x="5" y="10" width="14" height="4" rx="1.2" fill="currentColor" opacity=".7"/>
+        <rect x="7" y="16" width="10" height="4" rx="1.2" fill="currentColor" opacity=".4"/>
+      </svg>
+      <h1>Aggregator</h1>
+    </div>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Search…" autocomplete="off">
+      <button class="mode-btn" id="modeBtn" aria-label="Toggle manage mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        <span id="modeLabel">Manage</span>
+      </button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="manage-hint">Edit mode on — click a card to edit, use the + button to add a new one. Changes save to this browser only.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>Nothing matches.</div>
+</main>
+
+<button class="fab" id="fab" aria-label="New card" title="New card">+</button>
+
+<div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal" id="modal">
+    <button class="close" id="closeBtn" aria-label="Close">&times;</button>
+    <input class="m-title" id="mTitle" placeholder="Title" readonly>
+    <input class="m-cat" id="mCat" placeholder="Category" list="catList" readonly>
+    <datalist id="catList"></datalist>
+    <ul id="mList"></ul>
+    <div class="add-row">
+      <input id="addName" placeholder="Name" autocomplete="off">
+      <input id="addUrl" placeholder="https://…" autocomplete="off">
+      <button class="add-btn" id="addBtn" aria-label="Add link">+</button>
+    </div>
+    <div class="m-footer">
+      <button class="del-card" id="delCardBtn">Delete card</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Each card is a themed bundle of related links. "added:true" marks a URL
+  // resolved for an entry the user listed without one.
+  let DATA = [
+    {
+      cat: "OSINT & Recon",
+      title: "OSINT portals",
+      items: [
+        { name: "start.me/osint4all", url: "https://start.me/p/L1rEYQ/osint4all" },
+        { name: "SpiderFoot (OSINT portal via projects)", url: "https://foorilla.com/media/" },
+        { name: "DorkSearch", url: "https://dorksearch.com/" },
+        { name: "GeoSpy", url: "https://geospy.ai/" },
+        { name: "Shodan Eye", url: "https://github.com/BullsEye0/shodan-eye" },
+        { name: "Certificate transparency / infra mapping", url: "https://trendshift.io/" },
+      ],
+    },
+    {
+      cat: "OSINT & Recon",
+      title: "Threat intel feeds",
+      items: [
+        { name: "cfpsec (CFP intel)", url: "https://github.com/alexandreborges/cfpsec" },
+        { name: "Threat-Intelligence-Hackers-Forums", url: "https://github.com/FSECDEV/Threat-Intelligence-Hackers-Forums" },
+        { name: "Recorded Future University", url: "https://university.recordedfuture.com/" },
+        { name: "Cybrary — Intro CTI", url: "https://www.cybrary.it/course/intro-cyber-threat-intelligence" },
+        { name: "SOCRadar — top AI pentest tools", url: "https://socradar.io/blog/top-10-ai-pentest-tools/" },
+      ],
+    },
+    {
+      cat: "Red team",
+      title: "AD attack path",
+      items: [
+        { name: "SpecterOps BloodHound", url: "https://github.com/SpecterOps/BloodHound" },
+        { name: "bloodhound-cli", url: "https://github.com/SpecterOps/bloodhound-cli" },
+        { name: "SpecterOps blog (bloodhound)", url: "https://specterops.io/blog/?category%5B%5D=bloodhound" },
+        { name: "Orange-Cyberdefense/GOAD", url: "https://github.com/Orange-Cyberdefense/GOAD" },
+        { name: "AD lab for pentest (Medium)", url: "https://medium.com/@browninfosecguy/active-directory-lab-for-penetration-testing-5d7ac393c0c4" },
+        { name: "COM Hijacking (SpecterOps)", url: "https://specterops.io/blog/2025/05/28/revisiting-com-hijacking/" },
+      ],
+    },
+    {
+      cat: "Red team",
+      title: "LOL binaries & privesc",
+      items: [
+        { name: "LOLBAS Project", url: "https://lolbas-project.github.io/" },
+        { name: "HackTricks — Windows privesc", url: "https://hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html" },
+        { name: "Privesc in Windows (iw)", url: "https://infosecwriteups.com/privilege-escalation-in-windows-380bee3a2842" },
+        { name: "FuzzySecurity — privesc tut 16", url: "https://fuzzysecurity.com/tutorials/16.html" },
+        { name: "g0tmi1k — basic Linux privesc", url: "https://web.archive.org/web/20210308064709/https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/" },
+      ],
+    },
+    {
+      cat: "Red team",
+      title: "Agentic / AI red-cell",
+      items: [
+        { name: "awarexone/Agentic-Bug-Hunter", url: "https://github.com/awarexone/Agentic-Bug-Hunter" },
+        { name: "SnailSploit/Claude-Red", url: "https://github.com/SnailSploit/Claude-Red" },
+        { name: "Masriyan — Claude cybersec skill", url: "https://github.com/Masriyan/Claude-Code-CyberSecurity-Skill" },
+        { name: "martian56/redcell", url: "https://github.com/martian56/redcell" },
+        { name: "elder-plinius/t3mp3st", url: "https://github.com/elder-plinius/t3mp3st" },
+        { name: "uphiago/recon-skills", url: "https://github.com/uphiago/recon-skills/" },
+        { name: "STARX33/LAAF", url: "https://github.com/STARX33/LAAF" },
+      ],
+    },
+    {
+      cat: "Exploits & CVE",
+      title: "Exploit search",
+      items: [
+        { name: "Exploit-DB", url: "https://www.exploit-db.com/" },
+        { name: "searchsploit (repo)", url: "https://github.com/SploitHQ/searchsploit" },
+        { name: "cvemap (projectdiscovery)", url: "https://github.com/projectdiscovery/cvemap" },
+        { name: "ra1nb0rn/search_vulns", url: "https://github.com/ra1nb0rn/search_vulns" },
+        { name: "search-vulns.com", url: "https://search-vulns.com/" },
+        { name: "Sploitus", url: "https://sploitus.com/?query=maxdb#exploits" },
+        { name: "Vulners / Packetstorm", url: "https://vulners.com/packetstorm/PACKETSTORM:180751" },
+        { name: "AttackerKB", url: "https://attackerkb.com/" },
+        { name: "CERT — VU#976247", url: "https://www.kb.cert.org/vuls/id/976247" },
+        { name: "Openwall oss-security", url: "https://www.openwall.com/lists/oss-security/2026/05/07/8" },
+      ],
+    },
+    {
+      cat: "Exploits & CVE",
+      title: "ProjectDiscovery suite",
+      items: [
+        { name: "projectdiscovery repos", url: "https://github.com/orgs/projectdiscovery/repositories" },
+      ],
+    },
+    {
+      cat: "Web / API",
+      title: "Hacking playbooks",
+      items: [
+        { name: "HackTricks", url: "https://hacktricks.wiki/en/index.html" },
+        { name: "The Hacker Recipes", url: "https://www.thehacker.recipes/" },
+        { name: "Hacksplaining lessons", url: "https://www.hacksplaining.com/lessons" },
+        { name: "Guru99 — SQLi example", url: "https://www.guru99.com/learn-sql-injection-with-practical-example.html" },
+        { name: "Hacksnation", url: "https://hacksnation.com/" },
+        { name: "hackers-arise — web app hacking w/ CyberMes", url: "https://hackers-arise.com/artificial-intelligence-ai-in-cybersecurity-part-26-web-app-hacking-with-cybermes/" },
+      ],
+    },
+    {
+      cat: "Web / API",
+      title: "RevShells & payloads",
+      items: [
+        { name: "RevShells generator", url: "https://www.revshells.com/" },
+      ],
+    },
+    {
+      cat: "LLM / AI sec",
+      title: "LLM red-team",
+      items: [
+        { name: "NVIDIA/garak", url: "https://github.com/NVIDIA/garak" },
+        { name: "Adversarial Robustness Toolbox", url: "https://adversarial-robustness-toolbox.readthedocs.io/en/latest/" },
+        { name: "OWASP GenAI resources", url: "https://genai.owasp.org/resources/" },
+        { name: "OWASP Threat Dragon (site)", url: "https://www.threatdragon.com/#/" },
+        { name: "OWASP/threat-dragon (repo)", url: "https://github.com/OWASP/threat-dragon" },
+        { name: "projectblack — local AI for cyber", url: "https://projectblack.io/blog/local-ai-for-cyber-security/" },
+        { name: "FuzzingLabs/mcp-security-hub", url: "https://github.com/FuzzingLabs/mcp-security-hub" },
+        { name: "hermes-agent", url: "https://hermes-agent.org/" },
+        { name: "Moak.ai", url: "https://moak.ai/#wake-up-call" },
+      ],
+    },
+    {
+      cat: "LLM / AI sec",
+      title: "Model leaderboards",
+      items: [
+        { name: "LMArena", url: "https://lmarena.ai/leaderboard" },
+        { name: "Scale leaderboard", url: "https://scale.com/leaderboard" },
+        { name: "llm-stats", url: "https://llm-stats.com/" },
+        { name: "HF LLM course ch.1", url: "https://huggingface.co/learn/llm-course/chapter1/1" },
+        { name: "DeepHat (HuggingFace org)", url: "https://huggingface.co/DeepHat", added: true },
+      ],
+    },
+    {
+      cat: "Malware & RE",
+      title: "Malware dev / evasion",
+      items: [
+        { name: "MalDev Academy", url: "https://maldevacademy.com/" },
+        { name: "s3cur3th1ssh1t — EDR bypass", url: "https://s3cur3th1ssh1t.github.io/A-tale-of-EDR-bypass-methods/" },
+        { name: "Checkpoint — evasions", url: "https://evasions.checkpoint.com/" },
+        { name: "Church of Malware", url: "https://churchofmalware.org/#about" },
+      ],
+    },
+    {
+      cat: "CTF & labs",
+      title: "CTF platforms",
+      items: [
+        { name: "CTFtime", url: "https://ctftime.org/" },
+        { name: "FCSC", url: "https://fcsc.fr/fr/" },
+        { name: "404 CTF", url: "https://www.404ctf.fr" },
+        { name: "crackmes.one", url: "https://crackmes.one/" },
+        { name: "HackerRank — security permutations", url: "https://www.hackerrank.com/challenges/security-tutorial-permutations/problem?isFullScreen=true" },
+        { name: "cicd-goat", url: "https://github.com/cider-security-research/cicd-goat" },
+        { name: "OWASP VWAD", url: "https://vwad.owasp.org/" },
+        { name: "Plug and Pwn", url: "https://plugandpwn.com/" },
+      ],
+    },
+    {
+      cat: "Learning",
+      title: "Courses & roadmaps",
+      items: [
+        { name: "ClassCentral — offensive sec (free)", url: "https://www.classcentral.com/subject/offensive-security?free=true&sort=rating-up" },
+        { name: "SANS skills roadmap", url: "https://www.sans.org/cyber-security-skills-roadmap" },
+        { name: "Grow Google — cybersec cert", url: "https://grow.google/intl/europe/google-career-certificates/cybersecurity/" },
+        { name: "roadmap.sh", url: "https://roadmap.sh/" },
+        { name: "Fortinet FCF cybersec", url: "https://training.fortinet.com/local/staticpage/view.php?page=fcf_cybersecurity" },
+        { name: "Fortinet FCF library (freelance)", url: "https://training.fortinet.com/local/library/?category=Certification%3AFCF_Cybersecurity" },
+        { name: "Securiti — DSPM cert", url: "https://education.securiti.ai/certifications/dspm/" },
+        { name: "Anthropic Skilljar", url: "https://anthropic.skilljar.com/" },
+        { name: "awesome-security", url: "https://github.com/sbilly/awesome-security" },
+        { name: "999 Course Sale (freebies)", url: "https://999coursesale.com/freebie-courses-list.php" },
+      ],
+    },
+    {
+      cat: "Learning",
+      title: "Research & papers",
+      items: [
+        { name: "Semantic Scholar", url: "https://www.semanticscholar.org/", added: true },
+        { name: "Connected Papers", url: "https://www.connectedpapers.com/" },
+        { name: "Zeta Alpha search", url: "https://search.zeta-alpha.com/" },
+        { name: "scholarai", url: "https://scholarai.io/" },
+        { name: "Scribd downloader mirror", url: "https://scribd.vdownloaders.com/" },
+        { name: "Freedium mirror", url: "https://freedium-mirror.cfd/" },
+      ],
+    },
+    {
+      cat: "Learning",
+      title: "Blockchain / crypto",
+      items: [
+        { name: "ethereumbook", url: "https://github.com/ethereumbook/ethereumbook" },
+        { name: "QOSF project list (quantum)", url: "https://qosf.org/project_list/" },
+      ],
+    },
+    {
+      cat: "Conferences",
+      title: "Academic",
+      items: [
+        { name: "ACM CCS 2025", url: "https://www.sigsac.org/ccs/CCS2025/" },
+        { name: "USENIX", url: "https://www.usenix.org/" },
+        { name: "NDSS", url: "https://www.ndss-symposium.org/" },
+        { name: "IEEE S&P 2025", url: "https://sp2025.ieee-security.org/" },
+      ],
+    },
+    {
+      cat: "Conferences",
+      title: "Industry (FR)",
+      items: [
+        { name: "Eventbrite FR — cybersecurity", url: "https://www.eventbrite.fr/d/online/cybersecurity/" },
+        { name: "10times — cybersecurity France", url: "https://10times.com/france/cyber-security" },
+        { name: "LeHack", url: "https://lehack.org/fr" },
+        { name: "InfoSec Conferences — France", url: "https://infosec-conferences.com/country/france" },
+        { name: "FIC Forum", url: "https://www.forum-fic.com/en/home/" },
+        { name: "DEF CON media", url: "https://media.defcon.org/" },
+        { name: "DEF CON 34 — DPRK laptop farm PDF", url: "https://media.defcon.org/DEF%20CON%2034/DEF%20CON%2034%20presentations/DEF%20CON%2034%20presentations/DEF%20CON%2034%20-%20Heiner%20Garc%C3%ADa%2C%20Mauro%20Eldritch%20-%20Smile%2C%20you're%20on%20camera%20Livestreaming%20from%20North%20Korea's%20IT%20workers%20laptop%20farm%20-%20Are%20v1.pdf" },
+      ],
+    },
+    {
+      cat: "Conferences",
+      title: "Gov / Admin",
+      items: [
+        { name: "DGSSI (MA)", url: "https://www.dgssi.gov.ma/fr" },
+        { name: "campusfrance doctorat", url: "https://doctorat.campusfrance.org" },
+        { name: "démarches-simplifiées (APS)", url: "https://www.demarches-simplifiees.fr/" },
+      ],
+    },
+    {
+      cat: "Privacy",
+      title: "Privacy & deletion",
+      items: [
+        { name: "Privacy Guides", url: "https://www.privacyguides.org/en/" },
+        { name: "privacypack", url: "https://privacypack.org/" },
+        { name: "justdeleteme", url: "https://justdeleteme.xyz/" },
+        { name: "AlternativeTo", url: "https://alternativeto.net/" },
+        { name: "Ibit-to/google-unlocked", url: "https://github.com/Ibit-to/google-unlocked" },
+      ],
+    },
+    {
+      cat: "Piracy / Media",
+      title: "Piracy guides",
+      items: [
+        { name: "FMHY — video piracy", url: "https://fmhy.net/videopiracyguide" },
+        { name: "FitGirl Repacks", url: "https://fitgirl-repacks.site/" },
+        { name: "RuTracker", url: "https://rutracker.org" },
+        { name: "massgrave — Win10 links", url: "https://massgrave.dev/windows_10_links" },
+        { name: "GenP (Adobe)", url: "https://github.com/TheMythologist/GenP" },
+        { name: "Boycott (TWN)", url: "https://boycott.thewitness.news/browse/1" },
+      ],
+    },
+    {
+      cat: "Piracy / Media",
+      title: "Streaming",
+      items: [
+        { name: "tv.garden (SA)", url: "https://tv.garden/sa/gUNShL4GZ5DwVP" },
+      ],
+    },
+    {
+      cat: "AI tools",
+      title: "Agentic / art",
+      items: [
+        { name: "ArtCraft apps", url: "https://getartcraft.com/apps" },
+        { name: "bbradar", url: "https://bbradar.io/" },
+      ],
+    },
+    {
+      cat: "AI tools",
+      title: "Writing & language",
+      items: [
+        { name: "LanguageTool", url: "https://languagetool.org/" },
+      ],
+    },
+    {
+      cat: "Misc / fun",
+      title: "Misc",
+      items: [
+        { name: "xkcd", url: "https://xkcd.com/" },
+        { name: "Habous — Maroc prayer times", url: "https://habous.gov.ma/prieres/index.php" },
+        { name: "Maiia", url: "https://www.maiia.com/" },
+        { name: "Google Drive — folder", url: "https://drive.google.com/drive/folders/1c4TvoAf59GR2oYq2VU53oMXR4MkL3pQu" },
+      ],
+    },
+    {
+      cat: "OSINT & Recon",
+      title: "User enumeration",
+      items: [
+        { name: "kaifcodec/user-scanner", url: "https://github.com/kaifcodec/user-scanner" },
+      ],
+    },
+    {
+      cat: "Red team",
+      title: "YouTube channel",
+      items: [
+        { name: "mmofficialclub", url: "https://youtube.com/@mmofficialclub?si=RjNvkQxM4-Nl8SZo" },
+      ],
+    },
+    {
+      cat: "Infra / lab",
+      title: "Identity / dir",
+      items: [
+        { name: "Univention UCS", url: "https://www.univention.com/products/ucs/" },
+      ],
+    },
+    {
+      cat: "YouTube",
+      title: "Security",
+      items: [
+        { name: "MalwareTechBlog", url: "https://www.youtube.com/@MalwareTechBlog/videos" },
+        { name: "LiveOverflow", url: "https://www.youtube.com/@LiveOverflow/videos" },
+        { name: "processus thief", url: "https://www.youtube.com/@processusthief/videos" },
+        { name: "HacktBack", url: "https://www.youtube.com/@HacktBack/videos" },
+        { name: "hackintux", url: "https://www.youtube.com/@hackintux5813/videos" },
+        { name: "Th3 Hacker News Bdarija", url: "https://www.youtube.com/c/Th3HackerNewsBdarija/videos" },
+        { name: "waie", url: "https://www.youtube.com/@waie/videos" },
+        { name: "wakedxy", url: "https://www.youtube.com/@wakedxy/videos" },
+        { name: "Micode", url: "https://www.youtube.com/@Micode/videos" },
+        { name: "Underscore_", url: "https://www.youtube.com/@Underscore_/videos" },
+      ],
+    },
+    {
+      cat: "YouTube",
+      title: "CS / AI",
+      items: [
+        { name: "Computerphile", url: "https://www.youtube.com/@Computerphile/videos" },
+        { name: "Andrej Karpathy", url: "https://www.youtube.com/@AndrejKarpathy/videos" },
+        { name: "Two Minute Papers (Károly Zsolnai)", url: "https://www.youtube.com/c/K%C3%A1rolyZsolnai/videos" },
+        { name: "Papers We Love", url: "https://www.youtube.com/c/PapersWeLove/videos" },
+        { name: "Giles McMullen", url: "https://www.youtube.com/@gilesmcmullen/videos" },
+      ],
+    },
+    {
+      cat: "YouTube",
+      title: "General",
+      items: [
+        { name: "Vox", url: "https://www.youtube.com/@Vox/videos" },
+        { name: "TED", url: "https://www.youtube.com/@TED/videos" },
+        { name: "country_life_vlog", url: "https://www.youtube.com/@country_life_vlog/videos" },
+        { name: "anaHr", url: "https://www.youtube.com/c/anaHr/videos" },
+        { name: "Playlist (secret)", url: "https://www.youtube.com/playlist?list=PLnPPawYttsm_BTjXEZB5C4uBRPcwcehrk" },
+        { name: "RiXVs1dXh-g (video)", url: "https://www.youtube.com/watch?v=RiXVs1dXh-g" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Browsers & editors",
+      items: [
+        { name: "Brave — download", url: "https://brave.com/download/" },
+        { name: "VS Code — download", url: "https://code.visualstudio.com/download" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Dev / runtime",
+      items: [
+        { name: "Git — downloads", url: "https://git-scm.com/downloads" },
+        { name: "Node.js — download", url: "https://nodejs.org/en/download" },
+        { name: "Python — downloads", url: "https://www.python.org/downloads/" },
+        { name: "Docker Desktop — download", url: "https://www.docker.com/products/docker-desktop/" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Utilities",
+      items: [
+        { name: "KeePass — download", url: "https://keepass.info/download.html" },
+        { name: "Okular — download", url: "https://okular.kde.org/download/" },
+        { name: "Upscayl — releases", url: "https://github.com/upscayl/upscayl/releases" },
+        { name: "Xournal++ — releases", url: "https://github.com/xournalpp/xournalpp/releases" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Media",
+      items: [
+        { name: "qBittorrent — download", url: "https://www.qbittorrent.org/download" },
+        { name: "mpv — install", url: "https://mpv.io/installation/" },
+        { name: "VLC — download", url: "https://www.videolan.org/vlc/" },
+        { name: "OBS Studio — download", url: "https://obsproject.com/download" },
+        { name: "Stremio — downloads", url: "https://www.stremio.com/downloads" },
+        { name: "Steam — install", url: "https://store.steampowered.com/about/" },
+        { name: "Logitech G HUB — download", url: "https://www.logitechg.com/en-us/innovation/g-hub.html" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Mail",
+      items: [
+        { name: "Proton Mail — download", url: "https://proton.me/mail/download" },
+      ],
+    },
+    {
+      cat: "Software · Cross-platform",
+      title: "Security tools",
+      items: [
+        { name: "Burp Suite Community — download", url: "https://portswigger.net/burp/communitydownload" },
+      ],
+    },
+    {
+      cat: "Software · Windows",
+      title: "Windows-only",
+      items: [
+        { name: "Notepad++ — downloads", url: "https://notepad-plus-plus.org/downloads/" },
+        { name: "7-Zip — download", url: "https://www.7-zip.org/download.html" },
+        { name: "SumatraPDF — download", url: "https://www.sumatrapdfreader.org/download-free-pdf-viewer" },
+        { name: "Python (MS Store)", url: "https://apps.microsoft.com/detail/9NCVDN91XZQP" },
+        { name: "VC++ Redistributable (x64)", url: "https://aka.ms/vs/17/release/vc_redist.x64.exe" },
+        { name: "BCUninstaller — download", url: "https://www.bcuninstaller.com/download" },
+        { name: "ExplorerPatcher — releases", url: "https://github.com/valinet/ExplorerPatcher/releases" },
+        { name: "balenaEtcher — download", url: "https://etcher.balena.io/#download-etcher" },
+        { name: "Rufus — download", url: "https://rufus.ie/en/#download" },
+        { name: "WSL + Ubuntu — install", url: "https://learn.microsoft.com/en-us/windows/wsl/install" },
+        { name: "Hyper-V — enable", url: "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v" },
+        { name: "Epic Games — download", url: "https://store.epicgames.com/en-US/download" },
+        { name: "League of Legends — download", url: "https://signup.leagueoflegends.com/en-us/signup/redownload" },
+      ],
+    },
+    {
+      cat: "Software · Linux",
+      title: "Linux-only",
+      items: [
+        { name: "zathura — download", url: "https://pwmt.org/projects/zathura/download/" },
+        { name: "htop — download", url: "https://htop.dev/downloads.html" },
+        { name: "VMware Workstation Pro — download", url: "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion" },
+        { name: "Stremio (Flatpak)", url: "https://flathub.org/apps/com.stremio.Stremio" },
+      ],
+    },
+    {
+      cat: "Extensions",
+      title: "Chrome extensions",
+      items: [
+        { name: "uBlock Origin Lite", url: "https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh", added: true },
+        { name: "Unhook — YouTube cleaner", url: "https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid", added: true },
+        { name: "iGraal", url: "https://chromewebstore.google.com/detail/igraal-shopping-with-savi/dnjbdplgaoeiejmddejmdbbamkbemkio", added: true },
+        { name: "Email Tracker + Pixelblock", url: "https://chromewebstore.google.com/detail/email-tracker-pixelblock/bnompdfnhdbgdaoanapncknhmckenfog", added: true },
+        { name: "ColorZilla", url: "https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp", added: true },
+        { name: "Privacy Badger", url: "https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp", added: true },
+        { name: "FireShot — full-page screenshots", url: "https://chromewebstore.google.com/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg", added: true },
+        { name: "Google Keep Full Screen", url: "https://chromewebstore.google.com/detail/google-keep-full-screen-e/eggnolhfcbkgnjeomajmdbcpbkdnomdc", added: true },
+        { name: "Dark Reader", url: "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh", added: true },
+        { name: "MailTracker for Gmail", url: "https://chromewebstore.google.com/detail/mailtracker-email-tracker/pgbdljpkijehgoacbjpolaomhkoffhnl", added: true },
+      ],
+    },
+  ];
+
+  function esc(s) {
+    return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // --- Persistence (localStorage, per-browser) ---
+  const STORAGE_KEY = 'aggregator.data.v4';
+  (function loadData() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length) DATA = parsed;
+      }
+    } catch (e) {}
+  })();
+  function saveData() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA)); } catch (e) {}
+  }
+
+  // --- DOM shortcuts ---
+  const grid = document.getElementById('grid');
+  const chipsEl = document.getElementById('chips');
+  const q = document.getElementById('q');
+  const emptyEl = document.getElementById('empty');
+  const scrim = document.getElementById('scrim');
+  const mTitle = document.getElementById('mTitle');
+  const mCat = document.getElementById('mCat');
+  const mList = document.getElementById('mList');
+  const addName = document.getElementById('addName');
+  const addUrl = document.getElementById('addUrl');
+  const addBtn = document.getElementById('addBtn');
+  const delCardBtn = document.getElementById('delCardBtn');
+  const fab = document.getElementById('fab');
+  const catList = document.getElementById('catList');
+  const modeBtn = document.getElementById('modeBtn');
+  const modeLabel = document.getElementById('modeLabel');
+
+  let activeCat = 'All';
+  let query = '';
+  let currentIdx = -1;
+  let editingLink = -1;
+
+  // --- Mode (view / manage) via location.hash ---
+  function readMode() { return location.hash.replace(/^#/, '') === 'manage' ? 'manage' : 'view'; }
+  function applyMode() {
+    const m = readMode();
+    document.body.classList.toggle('manage', m === 'manage');
+    modeLabel.textContent = m === 'manage' ? 'Done' : 'Manage';
+    mTitle.readOnly = (m === 'view');
+    mCat.readOnly = (m === 'view');
+  }
+  window.addEventListener('hashchange', () => { applyMode(); if (scrim.classList.contains('open')) renderModal(); });
+  modeBtn.addEventListener('click', () => { location.hash = readMode() === 'manage' ? '' : 'manage'; });
+
+  // --- Chips ---
+  function renderChips() {
+    const cats = Array.from(new Set(DATA.map(d => d.cat)));
+    const counts = Object.fromEntries(cats.map(c => [c, DATA.filter(d => d.cat === c).reduce((s,d) => s + d.items.length, 0)]));
+    if (activeCat !== 'All' && !cats.includes(activeCat)) activeCat = 'All';
+    chipsEl.innerHTML = '';
+    const total = DATA.reduce((s,d) => s + d.items.length, 0);
+    chipsEl.appendChild(chip('All', total));
+    for (const c of cats) chipsEl.appendChild(chip(c, counts[c]));
+    catList.innerHTML = cats.map(c => `<option value="${esc(c)}">`).join('');
+  }
+  function chip(label, n) {
+    const el = document.createElement('button');
+    el.className = 'chip' + (label === activeCat ? ' active' : '');
+    el.innerHTML = `${esc(label)}<span class="n">${n}</span>`;
+    el.onclick = () => { activeCat = label; renderChips(); render(); };
+    return el;
+  }
+
+  // --- Grid ---
+  function render() {
+    grid.innerHTML = '';
+    let shown = 0;
+    DATA.forEach((card, idx) => {
+      if (activeCat !== 'All' && card.cat !== activeCat) return;
+      const items = query
+        ? card.items.filter(i => (i.name + ' ' + (i.url||'') + ' ' + card.title + ' ' + card.cat).toLowerCase().includes(query))
+        : card.items;
+      if (query && !items.length) return;
+      shown += items.length;
+      const preview = items.slice(0, 5);
+      const extra = items.length - preview.length;
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.tabIndex = 0;
+      el.innerHTML = `
+        <h3>${esc(card.title)}<span class="tag">${esc(card.cat)}</span></h3>
+        <ul class="preview">${
+          items.length === 0
+            ? '<li class="more">Empty — open to add links</li>'
+            : preview.map(i => `<li>${esc(i.name)}</li>`).join('') + (extra > 0 ? `<li class="more">+ ${extra} more</li>` : '')
+        }</ul>
+      `;
+      el.addEventListener('click', () => openModal(idx));
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(idx); } });
+      grid.appendChild(el);
+    });
+    emptyEl.hidden = !(query && shown === 0);
+  }
+
+  // --- Modal ---
+  function openModal(idx) {
+    currentIdx = idx;
+    editingLink = -1;
+    renderModal();
+    scrim.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => requestAnimationFrame(() => scrim.classList.add('visible')));
+    (readMode() === 'manage' ? mTitle : document.getElementById('closeBtn')).focus();
+  }
+  function closeModal() {
+    scrim.classList.remove('visible');
+    document.body.style.overflow = '';
+    delCardBtn.classList.remove('confirm');
+    delCardBtn.textContent = 'Delete card';
+    setTimeout(() => scrim.classList.remove('open'), 300);
+    currentIdx = -1;
+  }
+  function renderModal() {
+    if (currentIdx < 0 || currentIdx >= DATA.length) { closeModal(); return; }
+    const card = DATA[currentIdx];
+    mTitle.value = card.title;
+    mCat.value = card.cat;
+    if (card.items.length === 0) {
+      mList.innerHTML = '<li style="color:var(--muted);justify-content:center">No links yet.</li>';
+    } else {
+      mList.innerHTML = card.items.map((i, k) => {
+        if (editingLink === k) {
+          return `<li class="editing">
+            <input class="e-name" value="${esc(i.name)}" placeholder="Name">
+            <input class="e-url"  value="${esc(i.url)}"  placeholder="https://…">
+            <div class="edit-row">
+              <button class="cancel" data-act="cancel">Cancel</button>
+              <button class="save"   data-act="save" data-k="${k}">Save</button>
+            </div>
+          </li>`;
+        }
+        return `<li>
+          <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.name)}</a>
+          <span class="row-actions">
+            <button data-act="edit" data-k="${k}" aria-label="Edit">&#9998;</button>
+            <button class="del" data-act="del" data-k="${k}" aria-label="Delete">&times;</button>
+          </span>
+        </li>`;
+      }).join('');
+    }
+    addName.value = '';
+    addUrl.value = '';
+  }
+
+  // Title / category inline edits
+  mTitle.addEventListener('input', () => {
+    if (currentIdx < 0) return;
+    DATA[currentIdx].title = mTitle.value || 'Untitled';
+    saveData(); render(); renderChips();
+  });
+  mCat.addEventListener('input', () => {
+    if (currentIdx < 0) return;
+    DATA[currentIdx].cat = mCat.value || 'Misc';
+    saveData(); render(); renderChips();
+  });
+
+  // List row actions (event delegation)
+  mList.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const act = btn.dataset.act;
+    const k = Number(btn.dataset.k);
+    if (act === 'edit') {
+      editingLink = k; renderModal();
+      setTimeout(() => mList.querySelector('.e-name')?.focus(), 0);
+    } else if (act === 'del') {
+      DATA[currentIdx].items.splice(k, 1); saveData(); render(); renderModal();
+    } else if (act === 'cancel') {
+      editingLink = -1; renderModal();
+    } else if (act === 'save') {
+      const li = btn.closest('li');
+      const name = li.querySelector('.e-name').value.trim();
+      const url  = li.querySelector('.e-url').value.trim();
+      if (!name || !url) return;
+      DATA[currentIdx].items[Number(btn.dataset.k)] = { name, url };
+      editingLink = -1; saveData(); render(); renderModal();
+    }
+  });
+  mList.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.target.classList.contains('e-name') || e.target.classList.contains('e-url'))) {
+      const btn = e.target.closest('li')?.querySelector('[data-act="save"]');
+      if (btn) { e.preventDefault(); btn.click(); }
+    }
+  });
+
+  // Add link
+  function addLink() {
+    if (currentIdx < 0) return;
+    const name = addName.value.trim();
+    const url = addUrl.value.trim();
+    if (!name || !url) return;
+    DATA[currentIdx].items.push({ name, url });
+    saveData(); render(); renderModal();
+    setTimeout(() => addName.focus(), 0);
+  }
+  addBtn.addEventListener('click', addLink);
+  [addName, addUrl].forEach(inp => inp.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addLink(); }
+  }));
+
+  // Delete card (two-click confirm)
+  delCardBtn.addEventListener('click', () => {
+    if (!delCardBtn.classList.contains('confirm')) {
+      delCardBtn.classList.add('confirm');
+      delCardBtn.textContent = 'Click again to delete';
+      setTimeout(() => { delCardBtn.classList.remove('confirm'); delCardBtn.textContent = 'Delete card'; }, 3000);
+      return;
+    }
+    DATA.splice(currentIdx, 1);
+    saveData(); closeModal(); render(); renderChips();
+  });
+
+  // FAB — new card
+  fab.addEventListener('click', () => {
+    DATA.unshift({ cat: activeCat !== 'All' ? activeCat : 'Misc', title: 'Untitled', items: [] });
+    saveData(); renderChips(); render(); openModal(0);
+    setTimeout(() => { mTitle.select(); }, 50);
+  });
+
+  // Scrim / search / close
+  scrim.addEventListener('click', (e) => { if (e.target === scrim) closeModal(); });
+  document.getElementById('closeBtn').addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  q.addEventListener('input', e => { query = e.target.value.trim().toLowerCase(); render(); });
+
+  // Boot
+  applyMode();
+  renderChips();
+  render();
+</script>
