@@ -1,3 +1,6 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
 <title>Aggregator</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='4' width='18' height='4' rx='1.2' fill='white'/%3E%3Crect x='5' y='10' width='14' height='4' rx='1.2' fill='white' fill-opacity='.7'/%3E%3Crect x='7' y='16' width='10' height='4' rx='1.2' fill='white' fill-opacity='.4'/%3E%3C/svg%3E">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -19,6 +22,7 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     background: var(--bg);
     color: var(--fg);
@@ -27,6 +31,7 @@
     font-size: 15px;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   a { color: var(--accent); text-decoration: none; word-break: break-word; }
   a:hover { text-decoration: underline; }
@@ -56,14 +61,16 @@
 
   .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   input[type=search] {
-    flex: 1; min-width: 200px;
+    flex: 1; min-width: 0;
     background: var(--surface);
     border: 1px solid transparent;
     color: var(--fg);
     padding: 10px 14px;
     border-radius: 999px;
     font: inherit;
+    font-size: 16px; /* prevents iOS auto-zoom on focus */
     outline: none;
+    -webkit-appearance: none;
   }
   input[type=search]:focus { border-color: var(--accent); background: #000; }
 
@@ -284,7 +291,7 @@
   .modal li.editing::before { display: none; }
   .modal li.editing input {
     background: var(--bg); border: 1px solid var(--border); color: var(--fg);
-    padding: 7px 10px; border-radius: 6px; font: inherit; outline: none;
+    padding: 8px 10px; border-radius: 6px; font: inherit; font-size: 16px; outline: none;
     width: 100%;
   }
   .modal li.editing input:focus { border-color: var(--accent); }
@@ -306,7 +313,7 @@
   }
   .add-row input {
     background: var(--surface-2); border: 1px solid var(--border);
-    padding: 8px 10px; font-size: 14px; color: var(--fg);
+    padding: 10px 12px; font-size: 16px; color: var(--fg);
     font-family: inherit; border-radius: 6px; outline: none;
     min-width: 0;
   }
@@ -948,14 +955,7 @@
   }
 
   async function publishToGitHub() {
-    if (!authed) { const ok = await tryAuth(); if (!ok) return; }
-    let pat;
-    try { pat = sessionStorage.getItem(PAT_KEY); } catch (e) {}
-    if (!pat) {
-      pat = window.prompt('GitHub Personal Access Token (fine-grained, contents:write on ' + REPO_OWNER + '/' + REPO_NAME + '):');
-      if (!pat) return;
-      try { sessionStorage.setItem(PAT_KEY, pat); } catch (e) {}
-    }
+    if (!authed || !pat) { const ok = await tryAuth(); if (!ok) return; }
     const base = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + DATA_PATH;
     const prevLabel = publishBtn.querySelector('span').textContent;
     publishBtn.querySelector('span').textContent = 'Publishing…';
@@ -977,7 +977,12 @@
         body: JSON.stringify(body),
       });
       if (!p.ok) {
-        if (p.status === 401 || p.status === 403) { try { sessionStorage.removeItem(PAT_KEY); } catch (e) {} }
+        if (p.status === 401 || p.status === 403) {
+          try { sessionStorage.removeItem(PAT_KEY); sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
+          authed = false; pat = null;
+          document.body.classList.remove('manage');
+          location.hash = '';
+        }
         throw new Error('PUT ' + p.status + ': ' + (await p.text()).slice(0,180));
       }
       clearDraft();
@@ -1014,31 +1019,40 @@
   let currentIdx = -1;
   let editingLink = -1;
 
-  // --- Mode (view / manage) via location.hash, password-gated ---
-  // To change the password: compute SHA-256 of your passphrase and paste it below.
-  //   bash:  printf 'YOUR_PASSWORD' | sha256sum
-  //   PowerShell:  "YOUR_PASSWORD" | % { [BitConverter]::ToString((New-Object System.Security.Cryptography.SHA256Managed).ComputeHash([Text.Encoding]::UTF8.GetBytes($_))) -replace '-','' } | ForEach-Object { $_.ToLower() }
-  // Default here is sha256('changeme') — REPLACE IT.
-  const PASSWORD_HASH = '057ba03d6c44104863dc7361fe4578965d1887360f90a0895882e58a6248fc86';
+  // --- Mode (view / manage), gated by a GitHub PAT ---
+  // One token does both: unlocks Manage mode AND publishes to GitHub.
+  // The token is validated against the repo via the GitHub API.
   const AUTH_KEY = 'aggregator.authed.v1';
   let authed = false;
-  try { authed = sessionStorage.getItem(AUTH_KEY) === 'yes'; } catch (e) {}
+  let pat = null;
+  try {
+    pat = sessionStorage.getItem(PAT_KEY);
+    authed = pat && sessionStorage.getItem(AUTH_KEY) === 'yes';
+  } catch (e) {}
 
-  async function sha256hex(s) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
-    return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, '0')).join('');
-  }
   async function tryAuth() {
-    const pwd = window.prompt('Password:');
-    if (pwd == null) return false;
-    const ok = (await sha256hex(pwd)) === PASSWORD_HASH;
-    if (ok) {
-      authed = true;
-      try { sessionStorage.setItem(AUTH_KEY, 'yes'); } catch (e) {}
-    } else {
-      alert('Wrong password.');
+    const input = window.prompt('GitHub Personal Access Token (fine-grained, contents:write on ' + REPO_OWNER + '/' + REPO_NAME + '):');
+    if (!input) return false;
+    try {
+      const resp = await fetch('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME, {
+        headers: { 'Authorization': 'token ' + input, 'Accept': 'application/vnd.github+json' }
+      });
+      if (resp.ok) {
+        pat = input;
+        authed = true;
+        try {
+          sessionStorage.setItem(PAT_KEY, input);
+          sessionStorage.setItem(AUTH_KEY, 'yes');
+        } catch (e) {}
+        return true;
+      }
+      if (resp.status === 401) { alert('Invalid or expired token.'); return false; }
+      if (resp.status === 404) { alert('Token has no access to ' + REPO_OWNER + '/' + REPO_NAME + '.\nMake sure the fine-grained PAT selects this repo with Contents: Read and write.'); return false; }
+      alert('Auth failed: HTTP ' + resp.status);
+    } catch (e) {
+      alert('Network error validating token: ' + e.message);
     }
-    return ok;
+    return false;
   }
 
   function readMode() {
