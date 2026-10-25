@@ -915,7 +915,6 @@
 
   // --- Persistence: remote data.json (shared) + local draft (per-browser) ---
   const DRAFT_KEY = 'aggregator.draft.v1';
-  const PAT_KEY   = 'aggregator.pat.v1';
   const DATA_URL  = './data.json';
   const REPO_OWNER = '1ch4k';
   const REPO_NAME  = 'aggregator';
@@ -978,8 +977,7 @@
       });
       if (!p.ok) {
         if (p.status === 401 || p.status === 403) {
-          try { sessionStorage.removeItem(PAT_KEY); sessionStorage.removeItem(AUTH_KEY); } catch (e) {}
-          authed = false; pat = null;
+          forgetAuth();
           document.body.classList.remove('manage');
           location.hash = '';
         }
@@ -1021,14 +1019,14 @@
 
   // --- Mode (view / manage), gated by a GitHub PAT ---
   // One token does both: unlocks Manage mode AND publishes to GitHub.
-  // The token is validated against the repo via the GitHub API.
-  const AUTH_KEY = 'aggregator.authed.v1';
+  // Token is NEVER persisted — lives only as this JS variable, cleared on exit.
   let authed = false;
   let pat = null;
-  try {
-    pat = sessionStorage.getItem(PAT_KEY);
-    authed = pat && sessionStorage.getItem(AUTH_KEY) === 'yes';
-  } catch (e) {}
+
+  function forgetAuth() {
+    pat = null;
+    authed = false;
+  }
 
   async function tryAuth() {
     const input = window.prompt('GitHub Personal Access Token (fine-grained, contents:write on ' + REPO_OWNER + '/' + REPO_NAME + '):');
@@ -1040,10 +1038,6 @@
       if (resp.ok) {
         pat = input;
         authed = true;
-        try {
-          sessionStorage.setItem(PAT_KEY, input);
-          sessionStorage.setItem(AUTH_KEY, 'yes');
-        } catch (e) {}
         return true;
       }
       if (resp.status === 401) { alert('Invalid or expired token.'); return false; }
@@ -1068,16 +1062,21 @@
   }
   window.addEventListener('hashchange', async () => {
     const wantManage = location.hash.replace(/^#/, '') === 'manage';
-    if (wantManage && !authed) {
-      const ok = await tryAuth();
-      if (!ok) { history.replaceState(null, '', location.pathname + location.search); applyMode(); return; }
+    if (wantManage) {
+      if (!authed) {
+        const ok = await tryAuth();
+        if (!ok) { history.replaceState(null, '', location.pathname + location.search); applyMode(); return; }
+      }
+    } else {
+      forgetAuth(); // leaving manage mode: drop token from memory
     }
     applyMode();
     if (scrim.classList.contains('open')) renderModal();
   });
   modeBtn.addEventListener('click', async () => {
-    if (readMode() === 'manage') { location.hash = ''; return; }
-    if (!authed) { const ok = await tryAuth(); if (!ok) return; }
+    if (readMode() === 'manage') { forgetAuth(); location.hash = ''; return; }
+    const ok = await tryAuth();          // always prompts; nothing is remembered
+    if (!ok) return;
     location.hash = 'manage';
   });
 
