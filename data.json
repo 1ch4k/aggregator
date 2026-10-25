@@ -1,1030 +1,1030 @@
-﻿[
-    {
-        "cat":  "OSINT \u0026 Recon",
-        "title":  "OSINT portals",
-        "items":  [
-                      {
-                          "name":  "start.me/osint4all",
-                          "url":  "https://start.me/p/L1rEYQ/osint4all"
-                      },
-                      {
-                          "name":  "SpiderFoot (OSINT portal via projects)",
-                          "url":  "https://foorilla.com/media/"
-                      },
-                      {
-                          "name":  "DorkSearch",
-                          "url":  "https://dorksearch.com/"
-                      },
-                      {
-                          "name":  "GeoSpy",
-                          "url":  "https://geospy.ai/"
-                      },
-                      {
-                          "name":  "Shodan Eye",
-                          "url":  "https://github.com/BullsEye0/shodan-eye"
-                      },
-                      {
-                          "name":  "Certificate transparency / infra mapping",
-                          "url":  "https://trendshift.io/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "OSINT \u0026 Recon",
-        "title":  "Threat intel feeds",
-        "items":  [
-                      {
-                          "name":  "cfpsec (CFP intel)",
-                          "url":  "https://github.com/alexandreborges/cfpsec"
-                      },
-                      {
-                          "name":  "Threat-Intelligence-Hackers-Forums",
-                          "url":  "https://github.com/FSECDEV/Threat-Intelligence-Hackers-Forums"
-                      },
-                      {
-                          "name":  "Recorded Future University",
-                          "url":  "https://university.recordedfuture.com/"
-                      },
-                      {
-                          "name":  "Cybrary â€” Intro CTI",
-                          "url":  "https://www.cybrary.it/course/intro-cyber-threat-intelligence"
-                      },
-                      {
-                          "name":  "SOCRadar â€” top AI pentest tools",
-                          "url":  "https://socradar.io/blog/top-10-ai-pentest-tools/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Red team",
-        "title":  "AD attack path",
-        "items":  [
-                      {
-                          "name":  "SpecterOps BloodHound",
-                          "url":  "https://github.com/SpecterOps/BloodHound"
-                      },
-                      {
-                          "name":  "bloodhound-cli",
-                          "url":  "https://github.com/SpecterOps/bloodhound-cli"
-                      },
-                      {
-                          "name":  "SpecterOps blog (bloodhound)",
-                          "url":  "https://specterops.io/blog/?category%5B%5D=bloodhound"
-                      },
-                      {
-                          "name":  "Orange-Cyberdefense/GOAD",
-                          "url":  "https://github.com/Orange-Cyberdefense/GOAD"
-                      },
-                      {
-                          "name":  "AD lab for pentest (Medium)",
-                          "url":  "https://medium.com/@browninfosecguy/active-directory-lab-for-penetration-testing-5d7ac393c0c4"
-                      },
-                      {
-                          "name":  "COM Hijacking (SpecterOps)",
-                          "url":  "https://specterops.io/blog/2025/05/28/revisiting-com-hijacking/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Red team",
-        "title":  "LOL binaries \u0026 privesc",
-        "items":  [
-                      {
-                          "name":  "LOLBAS Project",
-                          "url":  "https://lolbas-project.github.io/"
-                      },
-                      {
-                          "name":  "HackTricks â€” Windows privesc",
-                          "url":  "https://hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html"
-                      },
-                      {
-                          "name":  "Privesc in Windows (iw)",
-                          "url":  "https://infosecwriteups.com/privilege-escalation-in-windows-380bee3a2842"
-                      },
-                      {
-                          "name":  "FuzzySecurity â€” privesc tut 16",
-                          "url":  "https://fuzzysecurity.com/tutorials/16.html"
-                      },
-                      {
-                          "name":  "g0tmi1k â€” basic Linux privesc",
-                          "url":  "https://web.archive.org/web/20210308064709/https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Red team",
-        "title":  "Agentic / AI red-cell",
-        "items":  [
-                      {
-                          "name":  "awarexone/Agentic-Bug-Hunter",
-                          "url":  "https://github.com/awarexone/Agentic-Bug-Hunter"
-                      },
-                      {
-                          "name":  "SnailSploit/Claude-Red",
-                          "url":  "https://github.com/SnailSploit/Claude-Red"
-                      },
-                      {
-                          "name":  "Masriyan â€” Claude cybersec skill",
-                          "url":  "https://github.com/Masriyan/Claude-Code-CyberSecurity-Skill"
-                      },
-                      {
-                          "name":  "martian56/redcell",
-                          "url":  "https://github.com/martian56/redcell"
-                      },
-                      {
-                          "name":  "elder-plinius/t3mp3st",
-                          "url":  "https://github.com/elder-plinius/t3mp3st"
-                      },
-                      {
-                          "name":  "uphiago/recon-skills",
-                          "url":  "https://github.com/uphiago/recon-skills/"
-                      },
-                      {
-                          "name":  "STARX33/LAAF",
-                          "url":  "https://github.com/STARX33/LAAF"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Exploits \u0026 CVE",
-        "title":  "Exploit search",
-        "items":  [
-                      {
-                          "name":  "Exploit-DB",
-                          "url":  "https://www.exploit-db.com/"
-                      },
-                      {
-                          "name":  "searchsploit (repo)",
-                          "url":  "https://github.com/SploitHQ/searchsploit"
-                      },
-                      {
-                          "name":  "cvemap (projectdiscovery)",
-                          "url":  "https://github.com/projectdiscovery/cvemap"
-                      },
-                      {
-                          "name":  "ra1nb0rn/search_vulns",
-                          "url":  "https://github.com/ra1nb0rn/search_vulns"
-                      },
-                      {
-                          "name":  "search-vulns.com",
-                          "url":  "https://search-vulns.com/"
-                      },
-                      {
-                          "name":  "Sploitus",
-                          "url":  "https://sploitus.com/?query=maxdb#exploits"
-                      },
-                      {
-                          "name":  "Vulners / Packetstorm",
-                          "url":  "https://vulners.com/packetstorm/PACKETSTORM:180751"
-                      },
-                      {
-                          "name":  "AttackerKB",
-                          "url":  "https://attackerkb.com/"
-                      },
-                      {
-                          "name":  "CERT â€” VU#976247",
-                          "url":  "https://www.kb.cert.org/vuls/id/976247"
-                      },
-                      {
-                          "name":  "Openwall oss-security",
-                          "url":  "https://www.openwall.com/lists/oss-security/2026/05/07/8"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Exploits \u0026 CVE",
-        "title":  "ProjectDiscovery suite",
-        "items":  [
-                      {
-                          "name":  "projectdiscovery repos",
-                          "url":  "https://github.com/orgs/projectdiscovery/repositories"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Web / API",
-        "title":  "Hacking playbooks",
-        "items":  [
-                      {
-                          "name":  "HackTricks",
-                          "url":  "https://hacktricks.wiki/en/index.html"
-                      },
-                      {
-                          "name":  "The Hacker Recipes",
-                          "url":  "https://www.thehacker.recipes/"
-                      },
-                      {
-                          "name":  "Hacksplaining lessons",
-                          "url":  "https://www.hacksplaining.com/lessons"
-                      },
-                      {
-                          "name":  "Guru99 â€” SQLi example",
-                          "url":  "https://www.guru99.com/learn-sql-injection-with-practical-example.html"
-                      },
-                      {
-                          "name":  "Hacksnation",
-                          "url":  "https://hacksnation.com/"
-                      },
-                      {
-                          "name":  "hackers-arise â€” web app hacking w/ CyberMes",
-                          "url":  "https://hackers-arise.com/artificial-intelligence-ai-in-cybersecurity-part-26-web-app-hacking-with-cybermes/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Web / API",
-        "title":  "RevShells \u0026 payloads",
-        "items":  [
-                      {
-                          "name":  "RevShells generator",
-                          "url":  "https://www.revshells.com/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "LLM / AI sec",
-        "title":  "LLM red-team",
-        "items":  [
-                      {
-                          "name":  "NVIDIA/garak",
-                          "url":  "https://github.com/NVIDIA/garak"
-                      },
-                      {
-                          "name":  "Adversarial Robustness Toolbox",
-                          "url":  "https://adversarial-robustness-toolbox.readthedocs.io/en/latest/"
-                      },
-                      {
-                          "name":  "OWASP GenAI resources",
-                          "url":  "https://genai.owasp.org/resources/"
-                      },
-                      {
-                          "name":  "OWASP Threat Dragon (site)",
-                          "url":  "https://www.threatdragon.com/#/"
-                      },
-                      {
-                          "name":  "OWASP/threat-dragon (repo)",
-                          "url":  "https://github.com/OWASP/threat-dragon"
-                      },
-                      {
-                          "name":  "projectblack â€” local AI for cyber",
-                          "url":  "https://projectblack.io/blog/local-ai-for-cyber-security/"
-                      },
-                      {
-                          "name":  "FuzzingLabs/mcp-security-hub",
-                          "url":  "https://github.com/FuzzingLabs/mcp-security-hub"
-                      },
-                      {
-                          "name":  "hermes-agent",
-                          "url":  "https://hermes-agent.org/"
-                      },
-                      {
-                          "name":  "Moak.ai",
-                          "url":  "https://moak.ai/#wake-up-call"
-                      }
-                  ]
-    },
-    {
-        "cat":  "LLM / AI sec",
-        "title":  "Model leaderboards",
-        "items":  [
-                      {
-                          "name":  "LMArena",
-                          "url":  "https://lmarena.ai/leaderboard"
-                      },
-                      {
-                          "name":  "Scale leaderboard",
-                          "url":  "https://scale.com/leaderboard"
-                      },
-                      {
-                          "name":  "llm-stats",
-                          "url":  "https://llm-stats.com/"
-                      },
-                      {
-                          "name":  "HF LLM course ch.1",
-                          "url":  "https://huggingface.co/learn/llm-course/chapter1/1"
-                      },
-                      {
-                          "name":  "DeepHat (HuggingFace org)",
-                          "url":  "https://huggingface.co/DeepHat",
-                          "added":  true
-                      }
-                  ]
-    },
-    {
-        "cat":  "Malware \u0026 RE",
-        "title":  "Malware dev / evasion",
-        "items":  [
-                      {
-                          "name":  "MalDev Academy",
-                          "url":  "https://maldevacademy.com/"
-                      },
-                      {
-                          "name":  "s3cur3th1ssh1t â€” EDR bypass",
-                          "url":  "https://s3cur3th1ssh1t.github.io/A-tale-of-EDR-bypass-methods/"
-                      },
-                      {
-                          "name":  "Checkpoint â€” evasions",
-                          "url":  "https://evasions.checkpoint.com/"
-                      },
-                      {
-                          "name":  "Church of Malware",
-                          "url":  "https://churchofmalware.org/#about"
-                      }
-                  ]
-    },
-    {
-        "cat":  "CTF \u0026 labs",
-        "title":  "CTF platforms",
-        "items":  [
-                      {
-                          "name":  "CTFtime",
-                          "url":  "https://ctftime.org/"
-                      },
-                      {
-                          "name":  "FCSC",
-                          "url":  "https://fcsc.fr/fr/"
-                      },
-                      {
-                          "name":  "404 CTF",
-                          "url":  "https://www.404ctf.fr"
-                      },
-                      {
-                          "name":  "crackmes.one",
-                          "url":  "https://crackmes.one/"
-                      },
-                      {
-                          "name":  "HackerRank â€” security permutations",
-                          "url":  "https://www.hackerrank.com/challenges/security-tutorial-permutations/problem?isFullScreen=true"
-                      },
-                      {
-                          "name":  "cicd-goat",
-                          "url":  "https://github.com/cider-security-research/cicd-goat"
-                      },
-                      {
-                          "name":  "OWASP VWAD",
-                          "url":  "https://vwad.owasp.org/"
-                      },
-                      {
-                          "name":  "Plug and Pwn",
-                          "url":  "https://plugandpwn.com/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Learning",
-        "title":  "Courses \u0026 roadmaps",
-        "items":  [
-                      {
-                          "name":  "ClassCentral â€” offensive sec (free)",
-                          "url":  "https://www.classcentral.com/subject/offensive-security?free=true\u0026sort=rating-up"
-                      },
-                      {
-                          "name":  "SANS skills roadmap",
-                          "url":  "https://www.sans.org/cyber-security-skills-roadmap"
-                      },
-                      {
-                          "name":  "Grow Google â€” cybersec cert",
-                          "url":  "https://grow.google/intl/europe/google-career-certificates/cybersecurity/"
-                      },
-                      {
-                          "name":  "roadmap.sh",
-                          "url":  "https://roadmap.sh/"
-                      },
-                      {
-                          "name":  "Fortinet FCF cybersec",
-                          "url":  "https://training.fortinet.com/local/staticpage/view.php?page=fcf_cybersecurity"
-                      },
-                      {
-                          "name":  "Fortinet FCF library (freelance)",
-                          "url":  "https://training.fortinet.com/local/library/?category=Certification%3AFCF_Cybersecurity"
-                      },
-                      {
-                          "name":  "Securiti â€” DSPM cert",
-                          "url":  "https://education.securiti.ai/certifications/dspm/"
-                      },
-                      {
-                          "name":  "Anthropic Skilljar",
-                          "url":  "https://anthropic.skilljar.com/"
-                      },
-                      {
-                          "name":  "awesome-security",
-                          "url":  "https://github.com/sbilly/awesome-security"
-                      },
-                      {
-                          "name":  "999 Course Sale (freebies)",
-                          "url":  "https://999coursesale.com/freebie-courses-list.php"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Learning",
-        "title":  "Research \u0026 papers",
-        "items":  [
-                      {
-                          "name":  "Semantic Scholar",
-                          "url":  "https://www.semanticscholar.org/",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Connected Papers",
-                          "url":  "https://www.connectedpapers.com/"
-                      },
-                      {
-                          "name":  "Zeta Alpha search",
-                          "url":  "https://search.zeta-alpha.com/"
-                      },
-                      {
-                          "name":  "scholarai",
-                          "url":  "https://scholarai.io/"
-                      },
-                      {
-                          "name":  "Scribd downloader mirror",
-                          "url":  "https://scribd.vdownloaders.com/"
-                      },
-                      {
-                          "name":  "Freedium mirror",
-                          "url":  "https://freedium-mirror.cfd/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Learning",
-        "title":  "Blockchain / crypto",
-        "items":  [
-                      {
-                          "name":  "ethereumbook",
-                          "url":  "https://github.com/ethereumbook/ethereumbook"
-                      },
-                      {
-                          "name":  "QOSF project list (quantum)",
-                          "url":  "https://qosf.org/project_list/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Conferences",
-        "title":  "Academic",
-        "items":  [
-                      {
-                          "name":  "ACM CCS 2025",
-                          "url":  "https://www.sigsac.org/ccs/CCS2025/"
-                      },
-                      {
-                          "name":  "USENIX",
-                          "url":  "https://www.usenix.org/"
-                      },
-                      {
-                          "name":  "NDSS",
-                          "url":  "https://www.ndss-symposium.org/"
-                      },
-                      {
-                          "name":  "IEEE S\u0026P 2025",
-                          "url":  "https://sp2025.ieee-security.org/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Conferences",
-        "title":  "Industry (FR)",
-        "items":  [
-                      {
-                          "name":  "Eventbrite FR â€” cybersecurity",
-                          "url":  "https://www.eventbrite.fr/d/online/cybersecurity/"
-                      },
-                      {
-                          "name":  "10times â€” cybersecurity France",
-                          "url":  "https://10times.com/france/cyber-security"
-                      },
-                      {
-                          "name":  "LeHack",
-                          "url":  "https://lehack.org/fr"
-                      },
-                      {
-                          "name":  "InfoSec Conferences â€” France",
-                          "url":  "https://infosec-conferences.com/country/france"
-                      },
-                      {
-                          "name":  "FIC Forum",
-                          "url":  "https://www.forum-fic.com/en/home/"
-                      },
-                      {
-                          "name":  "DEF CON media",
-                          "url":  "https://media.defcon.org/"
-                      },
-                      {
-                          "name":  "DEF CON 34 â€” DPRK laptop farm PDF",
-                          "url":  "https://media.defcon.org/DEF%20CON%2034/DEF%20CON%2034%20presentations/DEF%20CON%2034%20presentations/DEF%20CON%2034%20-%20Heiner%20Garc%C3%ADa%2C%20Mauro%20Eldritch%20-%20Smile%2C%20you\u0027re%20on%20camera%20Livestreaming%20from%20North%20Korea\u0027s%20IT%20workers%20laptop%20farm%20-%20Are%20v1.pdf"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Conferences",
-        "title":  "Gov / Admin",
-        "items":  [
-                      {
-                          "name":  "DGSSI (MA)",
-                          "url":  "https://www.dgssi.gov.ma/fr"
-                      },
-                      {
-                          "name":  "campusfrance doctorat",
-                          "url":  "https://doctorat.campusfrance.org"
-                      },
-                      {
-                          "name":  "dÃ©marches-simplifiÃ©es (APS)",
-                          "url":  "https://www.demarches-simplifiees.fr/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Privacy",
-        "title":  "Privacy \u0026 deletion",
-        "items":  [
-                      {
-                          "name":  "Privacy Guides",
-                          "url":  "https://www.privacyguides.org/en/"
-                      },
-                      {
-                          "name":  "privacypack",
-                          "url":  "https://privacypack.org/"
-                      },
-                      {
-                          "name":  "justdeleteme",
-                          "url":  "https://justdeleteme.xyz/"
-                      },
-                      {
-                          "name":  "AlternativeTo",
-                          "url":  "https://alternativeto.net/"
-                      },
-                      {
-                          "name":  "Ibit-to/google-unlocked",
-                          "url":  "https://github.com/Ibit-to/google-unlocked"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Piracy / Media",
-        "title":  "Piracy guides",
-        "items":  [
-                      {
-                          "name":  "FMHY â€” video piracy",
-                          "url":  "https://fmhy.net/videopiracyguide"
-                      },
-                      {
-                          "name":  "FitGirl Repacks",
-                          "url":  "https://fitgirl-repacks.site/"
-                      },
-                      {
-                          "name":  "RuTracker",
-                          "url":  "https://rutracker.org"
-                      },
-                      {
-                          "name":  "massgrave â€” Win10 links",
-                          "url":  "https://massgrave.dev/windows_10_links"
-                      },
-                      {
-                          "name":  "GenP (Adobe)",
-                          "url":  "https://github.com/TheMythologist/GenP"
-                      },
-                      {
-                          "name":  "Boycott (TWN)",
-                          "url":  "https://boycott.thewitness.news/browse/1"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Piracy / Media",
-        "title":  "Streaming",
-        "items":  [
-                      {
-                          "name":  "tv.garden (SA)",
-                          "url":  "https://tv.garden/sa/gUNShL4GZ5DwVP"
-                      }
-                  ]
-    },
-    {
-        "cat":  "AI tools",
-        "title":  "Agentic / art",
-        "items":  [
-                      {
-                          "name":  "ArtCraft apps",
-                          "url":  "https://getartcraft.com/apps"
-                      },
-                      {
-                          "name":  "bbradar",
-                          "url":  "https://bbradar.io/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "AI tools",
-        "title":  "Writing \u0026 language",
-        "items":  [
-                      {
-                          "name":  "LanguageTool",
-                          "url":  "https://languagetool.org/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Misc / fun",
-        "title":  "Misc",
-        "items":  [
-                      {
-                          "name":  "xkcd",
-                          "url":  "https://xkcd.com/"
-                      },
-                      {
-                          "name":  "Habous â€” Maroc prayer times",
-                          "url":  "https://habous.gov.ma/prieres/index.php"
-                      },
-                      {
-                          "name":  "Maiia",
-                          "url":  "https://www.maiia.com/"
-                      },
-                      {
-                          "name":  "Google Drive â€” folder",
-                          "url":  "https://drive.google.com/drive/folders/1c4TvoAf59GR2oYq2VU53oMXR4MkL3pQu"
-                      }
-                  ]
-    },
-    {
-        "cat":  "OSINT \u0026 Recon",
-        "title":  "User enumeration",
-        "items":  [
-                      {
-                          "name":  "kaifcodec/user-scanner",
-                          "url":  "https://github.com/kaifcodec/user-scanner"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Red team",
-        "title":  "YouTube channel",
-        "items":  [
-                      {
-                          "name":  "mmofficialclub",
-                          "url":  "https://youtube.com/@mmofficialclub?si=RjNvkQxM4-Nl8SZo"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Infra / lab",
-        "title":  "Identity / dir",
-        "items":  [
-                      {
-                          "name":  "Univention UCS",
-                          "url":  "https://www.univention.com/products/ucs/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "YouTube",
-        "title":  "Security",
-        "items":  [
-                      {
-                          "name":  "MalwareTechBlog",
-                          "url":  "https://www.youtube.com/@MalwareTechBlog/videos"
-                      },
-                      {
-                          "name":  "LiveOverflow",
-                          "url":  "https://www.youtube.com/@LiveOverflow/videos"
-                      },
-                      {
-                          "name":  "processus thief",
-                          "url":  "https://www.youtube.com/@processusthief/videos"
-                      },
-                      {
-                          "name":  "HacktBack",
-                          "url":  "https://www.youtube.com/@HacktBack/videos"
-                      },
-                      {
-                          "name":  "hackintux",
-                          "url":  "https://www.youtube.com/@hackintux5813/videos"
-                      },
-                      {
-                          "name":  "Th3 Hacker News Bdarija",
-                          "url":  "https://www.youtube.com/c/Th3HackerNewsBdarija/videos"
-                      },
-                      {
-                          "name":  "waie",
-                          "url":  "https://www.youtube.com/@waie/videos"
-                      },
-                      {
-                          "name":  "wakedxy",
-                          "url":  "https://www.youtube.com/@wakedxy/videos"
-                      },
-                      {
-                          "name":  "Micode",
-                          "url":  "https://www.youtube.com/@Micode/videos"
-                      },
-                      {
-                          "name":  "Underscore_",
-                          "url":  "https://www.youtube.com/@Underscore_/videos"
-                      }
-                  ]
-    },
-    {
-        "cat":  "YouTube",
-        "title":  "CS / AI",
-        "items":  [
-                      {
-                          "name":  "Computerphile",
-                          "url":  "https://www.youtube.com/@Computerphile/videos"
-                      },
-                      {
-                          "name":  "Andrej Karpathy",
-                          "url":  "https://www.youtube.com/@AndrejKarpathy/videos"
-                      },
-                      {
-                          "name":  "Two Minute Papers (KÃ¡roly Zsolnai)",
-                          "url":  "https://www.youtube.com/c/K%C3%A1rolyZsolnai/videos"
-                      },
-                      {
-                          "name":  "Papers We Love",
-                          "url":  "https://www.youtube.com/c/PapersWeLove/videos"
-                      },
-                      {
-                          "name":  "Giles McMullen",
-                          "url":  "https://www.youtube.com/@gilesmcmullen/videos"
-                      }
-                  ]
-    },
-    {
-        "cat":  "YouTube",
-        "title":  "General",
-        "items":  [
-                      {
-                          "name":  "Vox",
-                          "url":  "https://www.youtube.com/@Vox/videos"
-                      },
-                      {
-                          "name":  "TED",
-                          "url":  "https://www.youtube.com/@TED/videos"
-                      },
-                      {
-                          "name":  "country_life_vlog",
-                          "url":  "https://www.youtube.com/@country_life_vlog/videos"
-                      },
-                      {
-                          "name":  "anaHr",
-                          "url":  "https://www.youtube.com/c/anaHr/videos"
-                      },
-                      {
-                          "name":  "Playlist (secret)",
-                          "url":  "https://www.youtube.com/playlist?list=PLnPPawYttsm_BTjXEZB5C4uBRPcwcehrk"
-                      },
-                      {
-                          "name":  "RiXVs1dXh-g (video)",
-                          "url":  "https://www.youtube.com/watch?v=RiXVs1dXh-g"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Browsers \u0026 editors",
-        "items":  [
-                      {
-                          "name":  "Brave â€” download",
-                          "url":  "https://brave.com/download/"
-                      },
-                      {
-                          "name":  "VS Code â€” download",
-                          "url":  "https://code.visualstudio.com/download"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Dev / runtime",
-        "items":  [
-                      {
-                          "name":  "Git â€” downloads",
-                          "url":  "https://git-scm.com/downloads"
-                      },
-                      {
-                          "name":  "Node.js â€” download",
-                          "url":  "https://nodejs.org/en/download"
-                      },
-                      {
-                          "name":  "Python â€” downloads",
-                          "url":  "https://www.python.org/downloads/"
-                      },
-                      {
-                          "name":  "Docker Desktop â€” download",
-                          "url":  "https://www.docker.com/products/docker-desktop/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Utilities",
-        "items":  [
-                      {
-                          "name":  "KeePass â€” download",
-                          "url":  "https://keepass.info/download.html"
-                      },
-                      {
-                          "name":  "Okular â€” download",
-                          "url":  "https://okular.kde.org/download/"
-                      },
-                      {
-                          "name":  "Upscayl â€” releases",
-                          "url":  "https://github.com/upscayl/upscayl/releases"
-                      },
-                      {
-                          "name":  "Xournal++ â€” releases",
-                          "url":  "https://github.com/xournalpp/xournalpp/releases"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Media",
-        "items":  [
-                      {
-                          "name":  "qBittorrent â€” download",
-                          "url":  "https://www.qbittorrent.org/download"
-                      },
-                      {
-                          "name":  "mpv â€” install",
-                          "url":  "https://mpv.io/installation/"
-                      },
-                      {
-                          "name":  "VLC â€” download",
-                          "url":  "https://www.videolan.org/vlc/"
-                      },
-                      {
-                          "name":  "OBS Studio â€” download",
-                          "url":  "https://obsproject.com/download"
-                      },
-                      {
-                          "name":  "Stremio â€” downloads",
-                          "url":  "https://www.stremio.com/downloads"
-                      },
-                      {
-                          "name":  "Steam â€” install",
-                          "url":  "https://store.steampowered.com/about/"
-                      },
-                      {
-                          "name":  "Logitech G HUB â€” download",
-                          "url":  "https://www.logitechg.com/en-us/innovation/g-hub.html"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Mail",
-        "items":  [
-                      {
-                          "name":  "Proton Mail â€” download",
-                          "url":  "https://proton.me/mail/download"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Cross-platform",
-        "title":  "Security tools",
-        "items":  [
-                      {
-                          "name":  "Burp Suite Community â€” download",
-                          "url":  "https://portswigger.net/burp/communitydownload"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Windows",
-        "title":  "Windows-only",
-        "items":  [
-                      {
-                          "name":  "Notepad++ â€” downloads",
-                          "url":  "https://notepad-plus-plus.org/downloads/"
-                      },
-                      {
-                          "name":  "7-Zip â€” download",
-                          "url":  "https://www.7-zip.org/download.html"
-                      },
-                      {
-                          "name":  "SumatraPDF â€” download",
-                          "url":  "https://www.sumatrapdfreader.org/download-free-pdf-viewer"
-                      },
-                      {
-                          "name":  "Python (MS Store)",
-                          "url":  "https://apps.microsoft.com/detail/9NCVDN91XZQP"
-                      },
-                      {
-                          "name":  "VC++ Redistributable (x64)",
-                          "url":  "https://aka.ms/vs/17/release/vc_redist.x64.exe"
-                      },
-                      {
-                          "name":  "BCUninstaller â€” download",
-                          "url":  "https://www.bcuninstaller.com/download"
-                      },
-                      {
-                          "name":  "ExplorerPatcher â€” releases",
-                          "url":  "https://github.com/valinet/ExplorerPatcher/releases"
-                      },
-                      {
-                          "name":  "balenaEtcher â€” download",
-                          "url":  "https://etcher.balena.io/#download-etcher"
-                      },
-                      {
-                          "name":  "Rufus â€” download",
-                          "url":  "https://rufus.ie/en/#download"
-                      },
-                      {
-                          "name":  "WSL + Ubuntu â€” install",
-                          "url":  "https://learn.microsoft.com/en-us/windows/wsl/install"
-                      },
-                      {
-                          "name":  "Hyper-V â€” enable",
-                          "url":  "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v"
-                      },
-                      {
-                          "name":  "Epic Games â€” download",
-                          "url":  "https://store.epicgames.com/en-US/download"
-                      },
-                      {
-                          "name":  "League of Legends â€” download",
-                          "url":  "https://signup.leagueoflegends.com/en-us/signup/redownload"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Software Â· Linux",
-        "title":  "Linux-only",
-        "items":  [
-                      {
-                          "name":  "zathura â€” download",
-                          "url":  "https://pwmt.org/projects/zathura/download/"
-                      },
-                      {
-                          "name":  "htop â€” download",
-                          "url":  "https://htop.dev/downloads.html"
-                      },
-                      {
-                          "name":  "VMware Workstation Pro â€” download",
-                          "url":  "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion"
-                      },
-                      {
-                          "name":  "Stremio (Flatpak)",
-                          "url":  "https://flathub.org/apps/com.stremio.Stremio"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Extensions",
-        "title":  "Chrome extensions",
-        "items":  [
-                      {
-                          "name":  "uBlock Origin Lite",
-                          "url":  "https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Unhook â€” YouTube cleaner",
-                          "url":  "https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid",
-                          "added":  true
-                      },
-                      {
-                          "name":  "iGraal",
-                          "url":  "https://chromewebstore.google.com/detail/igraal-shopping-with-savi/dnjbdplgaoeiejmddejmdbbamkbemkio",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Email Tracker + Pixelblock",
-                          "url":  "https://chromewebstore.google.com/detail/email-tracker-pixelblock/bnompdfnhdbgdaoanapncknhmckenfog",
-                          "added":  true
-                      },
-                      {
-                          "name":  "ColorZilla",
-                          "url":  "https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Privacy Badger",
-                          "url":  "https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp",
-                          "added":  true
-                      },
-                      {
-                          "name":  "FireShot â€” full-page screenshots",
-                          "url":  "https://chromewebstore.google.com/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Google Keep Full Screen",
-                          "url":  "https://chromewebstore.google.com/detail/google-keep-full-screen-e/eggnolhfcbkgnjeomajmdbcpbkdnomdc",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Dark Reader",
-                          "url":  "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh",
-                          "added":  true
-                      },
-                      {
-                          "name":  "MailTracker for Gmail",
-                          "url":  "https://chromewebstore.google.com/detail/mailtracker-email-tracker/pgbdljpkijehgoacbjpolaomhkoffhnl",
-                          "added":  true
-                      }
-                  ]
-    }
+[
+  {
+    "cat": "OSINT & Recon",
+    "title": "OSINT portals",
+    "items": [
+      {
+        "name": "start.me/osint4all",
+        "url": "https://start.me/p/L1rEYQ/osint4all"
+      },
+      {
+        "name": "SpiderFoot (OSINT portal via projects)",
+        "url": "https://foorilla.com/media/"
+      },
+      {
+        "name": "DorkSearch",
+        "url": "https://dorksearch.com/"
+      },
+      {
+        "name": "GeoSpy",
+        "url": "https://geospy.ai/"
+      },
+      {
+        "name": "Shodan Eye",
+        "url": "https://github.com/BullsEye0/shodan-eye"
+      },
+      {
+        "name": "Certificate transparency / infra mapping",
+        "url": "https://trendshift.io/"
+      }
+    ]
+  },
+  {
+    "cat": "OSINT & Recon",
+    "title": "Threat intel feeds",
+    "items": [
+      {
+        "name": "cfpsec (CFP intel)",
+        "url": "https://github.com/alexandreborges/cfpsec"
+      },
+      {
+        "name": "Threat-Intelligence-Hackers-Forums",
+        "url": "https://github.com/FSECDEV/Threat-Intelligence-Hackers-Forums"
+      },
+      {
+        "name": "Recorded Future University",
+        "url": "https://university.recordedfuture.com/"
+      },
+      {
+        "name": "Cybrary â€” Intro CTI",
+        "url": "https://www.cybrary.it/course/intro-cyber-threat-intelligence"
+      },
+      {
+        "name": "SOCRadar â€” top AI pentest tools",
+        "url": "https://socradar.io/blog/top-10-ai-pentest-tools/"
+      }
+    ]
+  },
+  {
+    "cat": "Red team",
+    "title": "AD attack path",
+    "items": [
+      {
+        "name": "SpecterOps BloodHound",
+        "url": "https://github.com/SpecterOps/BloodHound"
+      },
+      {
+        "name": "bloodhound-cli",
+        "url": "https://github.com/SpecterOps/bloodhound-cli"
+      },
+      {
+        "name": "SpecterOps blog (bloodhound)",
+        "url": "https://specterops.io/blog/?category%5B%5D=bloodhound"
+      },
+      {
+        "name": "Orange-Cyberdefense/GOAD",
+        "url": "https://github.com/Orange-Cyberdefense/GOAD"
+      },
+      {
+        "name": "AD lab for pentest (Medium)",
+        "url": "https://medium.com/@browninfosecguy/active-directory-lab-for-penetration-testing-5d7ac393c0c4"
+      },
+      {
+        "name": "COM Hijacking (SpecterOps)",
+        "url": "https://specterops.io/blog/2025/05/28/revisiting-com-hijacking/"
+      }
+    ]
+  },
+  {
+    "cat": "Red team",
+    "title": "LOL binaries & privesc",
+    "items": [
+      {
+        "name": "LOLBAS Project",
+        "url": "https://lolbas-project.github.io/"
+      },
+      {
+        "name": "HackTricks â€” Windows privesc",
+        "url": "https://hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html"
+      },
+      {
+        "name": "Privesc in Windows (iw)",
+        "url": "https://infosecwriteups.com/privilege-escalation-in-windows-380bee3a2842"
+      },
+      {
+        "name": "FuzzySecurity â€” privesc tut 16",
+        "url": "https://fuzzysecurity.com/tutorials/16.html"
+      },
+      {
+        "name": "g0tmi1k â€” basic Linux privesc",
+        "url": "https://web.archive.org/web/20210308064709/https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/"
+      }
+    ]
+  },
+  {
+    "cat": "Red team",
+    "title": "Agentic / AI red-cell",
+    "items": [
+      {
+        "name": "awarexone/Agentic-Bug-Hunter",
+        "url": "https://github.com/awarexone/Agentic-Bug-Hunter"
+      },
+      {
+        "name": "SnailSploit/Claude-Red",
+        "url": "https://github.com/SnailSploit/Claude-Red"
+      },
+      {
+        "name": "Masriyan â€” Claude cybersec skill",
+        "url": "https://github.com/Masriyan/Claude-Code-CyberSecurity-Skill"
+      },
+      {
+        "name": "martian56/redcell",
+        "url": "https://github.com/martian56/redcell"
+      },
+      {
+        "name": "elder-plinius/t3mp3st",
+        "url": "https://github.com/elder-plinius/t3mp3st"
+      },
+      {
+        "name": "uphiago/recon-skills",
+        "url": "https://github.com/uphiago/recon-skills/"
+      },
+      {
+        "name": "STARX33/LAAF",
+        "url": "https://github.com/STARX33/LAAF"
+      }
+    ]
+  },
+  {
+    "cat": "Exploits & CVE",
+    "title": "Exploit search",
+    "items": [
+      {
+        "name": "Exploit-DB",
+        "url": "https://www.exploit-db.com/"
+      },
+      {
+        "name": "searchsploit (repo)",
+        "url": "https://github.com/SploitHQ/searchsploit"
+      },
+      {
+        "name": "cvemap (projectdiscovery)",
+        "url": "https://github.com/projectdiscovery/cvemap"
+      },
+      {
+        "name": "ra1nb0rn/search_vulns",
+        "url": "https://github.com/ra1nb0rn/search_vulns"
+      },
+      {
+        "name": "search-vulns.com",
+        "url": "https://search-vulns.com/"
+      },
+      {
+        "name": "Sploitus",
+        "url": "https://sploitus.com/?query=maxdb#exploits"
+      },
+      {
+        "name": "Vulners / Packetstorm",
+        "url": "https://vulners.com/packetstorm/PACKETSTORM:180751"
+      },
+      {
+        "name": "AttackerKB",
+        "url": "https://attackerkb.com/"
+      },
+      {
+        "name": "CERT â€” VU#976247",
+        "url": "https://www.kb.cert.org/vuls/id/976247"
+      },
+      {
+        "name": "Openwall oss-security",
+        "url": "https://www.openwall.com/lists/oss-security/2026/05/07/8"
+      }
+    ]
+  },
+  {
+    "cat": "Exploits & CVE",
+    "title": "ProjectDiscovery suite",
+    "items": [
+      {
+        "name": "projectdiscovery repos",
+        "url": "https://github.com/orgs/projectdiscovery/repositories"
+      }
+    ]
+  },
+  {
+    "cat": "Web / API",
+    "title": "Hacking playbooks",
+    "items": [
+      {
+        "name": "HackTricks",
+        "url": "https://hacktricks.wiki/en/index.html"
+      },
+      {
+        "name": "The Hacker Recipes",
+        "url": "https://www.thehacker.recipes/"
+      },
+      {
+        "name": "Hacksplaining lessons",
+        "url": "https://www.hacksplaining.com/lessons"
+      },
+      {
+        "name": "Guru99 â€” SQLi example",
+        "url": "https://www.guru99.com/learn-sql-injection-with-practical-example.html"
+      },
+      {
+        "name": "Hacksnation",
+        "url": "https://hacksnation.com/"
+      },
+      {
+        "name": "hackers-arise â€” web app hacking w/ CyberMes",
+        "url": "https://hackers-arise.com/artificial-intelligence-ai-in-cybersecurity-part-26-web-app-hacking-with-cybermes/"
+      }
+    ]
+  },
+  {
+    "cat": "Web / API",
+    "title": "RevShells & payloads",
+    "items": [
+      {
+        "name": "RevShells generator",
+        "url": "https://www.revshells.com/"
+      }
+    ]
+  },
+  {
+    "cat": "LLM / AI sec",
+    "title": "LLM red-team",
+    "items": [
+      {
+        "name": "NVIDIA/garak",
+        "url": "https://github.com/NVIDIA/garak"
+      },
+      {
+        "name": "Adversarial Robustness Toolbox",
+        "url": "https://adversarial-robustness-toolbox.readthedocs.io/en/latest/"
+      },
+      {
+        "name": "OWASP GenAI resources",
+        "url": "https://genai.owasp.org/resources/"
+      },
+      {
+        "name": "OWASP Threat Dragon (site)",
+        "url": "https://www.threatdragon.com/#/"
+      },
+      {
+        "name": "OWASP/threat-dragon (repo)",
+        "url": "https://github.com/OWASP/threat-dragon"
+      },
+      {
+        "name": "projectblack â€” local AI for cyber",
+        "url": "https://projectblack.io/blog/local-ai-for-cyber-security/"
+      },
+      {
+        "name": "FuzzingLabs/mcp-security-hub",
+        "url": "https://github.com/FuzzingLabs/mcp-security-hub"
+      },
+      {
+        "name": "hermes-agent",
+        "url": "https://hermes-agent.org/"
+      },
+      {
+        "name": "Moak.ai",
+        "url": "https://moak.ai/#wake-up-call"
+      }
+    ]
+  },
+  {
+    "cat": "LLM / AI sec",
+    "title": "Model leaderboards",
+    "items": [
+      {
+        "name": "LMArena",
+        "url": "https://lmarena.ai/leaderboard"
+      },
+      {
+        "name": "Scale leaderboard",
+        "url": "https://scale.com/leaderboard"
+      },
+      {
+        "name": "llm-stats",
+        "url": "https://llm-stats.com/"
+      },
+      {
+        "name": "HF LLM course ch.1",
+        "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+      },
+      {
+        "name": "DeepHat (HuggingFace org)",
+        "url": "https://huggingface.co/DeepHat",
+        "added": true
+      }
+    ]
+  },
+  {
+    "cat": "Malware & RE",
+    "title": "Malware dev / evasion",
+    "items": [
+      {
+        "name": "MalDev Academy",
+        "url": "https://maldevacademy.com/"
+      },
+      {
+        "name": "s3cur3th1ssh1t â€” EDR bypass",
+        "url": "https://s3cur3th1ssh1t.github.io/A-tale-of-EDR-bypass-methods/"
+      },
+      {
+        "name": "Checkpoint â€” evasions",
+        "url": "https://evasions.checkpoint.com/"
+      },
+      {
+        "name": "Church of Malware",
+        "url": "https://churchofmalware.org/#about"
+      }
+    ]
+  },
+  {
+    "cat": "CTF & labs",
+    "title": "CTF platforms",
+    "items": [
+      {
+        "name": "CTFtime",
+        "url": "https://ctftime.org/"
+      },
+      {
+        "name": "FCSC",
+        "url": "https://fcsc.fr/fr/"
+      },
+      {
+        "name": "404 CTF",
+        "url": "https://www.404ctf.fr"
+      },
+      {
+        "name": "crackmes.one",
+        "url": "https://crackmes.one/"
+      },
+      {
+        "name": "HackerRank â€” security permutations",
+        "url": "https://www.hackerrank.com/challenges/security-tutorial-permutations/problem?isFullScreen=true"
+      },
+      {
+        "name": "cicd-goat",
+        "url": "https://github.com/cider-security-research/cicd-goat"
+      },
+      {
+        "name": "OWASP VWAD",
+        "url": "https://vwad.owasp.org/"
+      },
+      {
+        "name": "Plug and Pwn",
+        "url": "https://plugandpwn.com/"
+      }
+    ]
+  },
+  {
+    "cat": "Learning",
+    "title": "Courses & roadmaps",
+    "items": [
+      {
+        "name": "ClassCentral â€” offensive sec (free)",
+        "url": "https://www.classcentral.com/subject/offensive-security?free=true&sort=rating-up"
+      },
+      {
+        "name": "SANS skills roadmap",
+        "url": "https://www.sans.org/cyber-security-skills-roadmap"
+      },
+      {
+        "name": "Grow Google â€” cybersec cert",
+        "url": "https://grow.google/intl/europe/google-career-certificates/cybersecurity/"
+      },
+      {
+        "name": "roadmap.sh",
+        "url": "https://roadmap.sh/"
+      },
+      {
+        "name": "Fortinet FCF cybersec",
+        "url": "https://training.fortinet.com/local/staticpage/view.php?page=fcf_cybersecurity"
+      },
+      {
+        "name": "Fortinet FCF library (freelance)",
+        "url": "https://training.fortinet.com/local/library/?category=Certification%3AFCF_Cybersecurity"
+      },
+      {
+        "name": "Securiti â€” DSPM cert",
+        "url": "https://education.securiti.ai/certifications/dspm/"
+      },
+      {
+        "name": "Anthropic Skilljar",
+        "url": "https://anthropic.skilljar.com/"
+      },
+      {
+        "name": "awesome-security",
+        "url": "https://github.com/sbilly/awesome-security"
+      },
+      {
+        "name": "999 Course Sale (freebies)",
+        "url": "https://999coursesale.com/freebie-courses-list.php"
+      }
+    ]
+  },
+  {
+    "cat": "Learning",
+    "title": "Research & papers",
+    "items": [
+      {
+        "name": "Semantic Scholar",
+        "url": "https://www.semanticscholar.org/",
+        "added": true
+      },
+      {
+        "name": "Connected Papers",
+        "url": "https://www.connectedpapers.com/"
+      },
+      {
+        "name": "Zeta Alpha search",
+        "url": "https://search.zeta-alpha.com/"
+      },
+      {
+        "name": "scholarai",
+        "url": "https://scholarai.io/"
+      },
+      {
+        "name": "Scribd downloader mirror",
+        "url": "https://scribd.vdownloaders.com/"
+      },
+      {
+        "name": "Freedium mirror",
+        "url": "https://freedium-mirror.cfd/"
+      }
+    ]
+  },
+  {
+    "cat": "Learning",
+    "title": "Blockchain / crypto",
+    "items": [
+      {
+        "name": "ethereumbook",
+        "url": "https://github.com/ethereumbook/ethereumbook"
+      },
+      {
+        "name": "QOSF project list (quantum)",
+        "url": "https://qosf.org/project_list/"
+      }
+    ]
+  },
+  {
+    "cat": "Conferences",
+    "title": "Academic",
+    "items": [
+      {
+        "name": "ACM CCS 2025",
+        "url": "https://www.sigsac.org/ccs/CCS2025/"
+      },
+      {
+        "name": "USENIX",
+        "url": "https://www.usenix.org/"
+      },
+      {
+        "name": "NDSS",
+        "url": "https://www.ndss-symposium.org/"
+      },
+      {
+        "name": "IEEE S&P 2025",
+        "url": "https://sp2025.ieee-security.org/"
+      }
+    ]
+  },
+  {
+    "cat": "Conferences",
+    "title": "Industry (FR)",
+    "items": [
+      {
+        "name": "Eventbrite FR â€” cybersecurity",
+        "url": "https://www.eventbrite.fr/d/online/cybersecurity/"
+      },
+      {
+        "name": "10times â€” cybersecurity France",
+        "url": "https://10times.com/france/cyber-security"
+      },
+      {
+        "name": "LeHack",
+        "url": "https://lehack.org/fr"
+      },
+      {
+        "name": "InfoSec Conferences â€” France",
+        "url": "https://infosec-conferences.com/country/france"
+      },
+      {
+        "name": "FIC Forum",
+        "url": "https://www.forum-fic.com/en/home/"
+      },
+      {
+        "name": "DEF CON media",
+        "url": "https://media.defcon.org/"
+      },
+      {
+        "name": "DEF CON 34 â€” DPRK laptop farm PDF",
+        "url": "https://media.defcon.org/DEF%20CON%2034/DEF%20CON%2034%20presentations/DEF%20CON%2034%20presentations/DEF%20CON%2034%20-%20Heiner%20Garc%C3%ADa%2C%20Mauro%20Eldritch%20-%20Smile%2C%20you're%20on%20camera%20Livestreaming%20from%20North%20Korea's%20IT%20workers%20laptop%20farm%20-%20Are%20v1.pdf"
+      }
+    ]
+  },
+  {
+    "cat": "Conferences",
+    "title": "Gov / Admin",
+    "items": [
+      {
+        "name": "DGSSI (MA)",
+        "url": "https://www.dgssi.gov.ma/fr"
+      },
+      {
+        "name": "campusfrance doctorat",
+        "url": "https://doctorat.campusfrance.org"
+      },
+      {
+        "name": "dÃ©marches-simplifiÃ©es (APS)",
+        "url": "https://www.demarches-simplifiees.fr/"
+      }
+    ]
+  },
+  {
+    "cat": "Privacy",
+    "title": "Privacy & deletion",
+    "items": [
+      {
+        "name": "Privacy Guides",
+        "url": "https://www.privacyguides.org/en/"
+      },
+      {
+        "name": "privacypack",
+        "url": "https://privacypack.org/"
+      },
+      {
+        "name": "justdeleteme",
+        "url": "https://justdeleteme.xyz/"
+      },
+      {
+        "name": "AlternativeTo",
+        "url": "https://alternativeto.net/"
+      },
+      {
+        "name": "Ibit-to/google-unlocked",
+        "url": "https://github.com/Ibit-to/google-unlocked"
+      }
+    ]
+  },
+  {
+    "cat": "Piracy / Media",
+    "title": "Piracy guides",
+    "items": [
+      {
+        "name": "FMHY â€” video piracy",
+        "url": "https://fmhy.net/videopiracyguide"
+      },
+      {
+        "name": "FitGirl Repacks",
+        "url": "https://fitgirl-repacks.site/"
+      },
+      {
+        "name": "RuTracker",
+        "url": "https://rutracker.org"
+      },
+      {
+        "name": "massgrave â€” Win10 links",
+        "url": "https://massgrave.dev/windows_10_links"
+      },
+      {
+        "name": "GenP (Adobe)",
+        "url": "https://github.com/TheMythologist/GenP"
+      },
+      {
+        "name": "Boycott (TWN)",
+        "url": "https://boycott.thewitness.news/browse/1"
+      }
+    ]
+  },
+  {
+    "cat": "Piracy / Media",
+    "title": "Streaming",
+    "items": [
+      {
+        "name": "tv.garden (SA)",
+        "url": "https://tv.garden/sa/gUNShL4GZ5DwVP"
+      }
+    ]
+  },
+  {
+    "cat": "AI tools",
+    "title": "Agentic / art",
+    "items": [
+      {
+        "name": "ArtCraft apps",
+        "url": "https://getartcraft.com/apps"
+      },
+      {
+        "name": "bbradar",
+        "url": "https://bbradar.io/"
+      }
+    ]
+  },
+  {
+    "cat": "AI tools",
+    "title": "Writing & language",
+    "items": [
+      {
+        "name": "LanguageTool",
+        "url": "https://languagetool.org/"
+      }
+    ]
+  },
+  {
+    "cat": "Misc / fun",
+    "title": "Misc",
+    "items": [
+      {
+        "name": "xkcd",
+        "url": "https://xkcd.com/"
+      },
+      {
+        "name": "Habous â€” Maroc prayer times",
+        "url": "https://habous.gov.ma/prieres/index.php"
+      },
+      {
+        "name": "Maiia",
+        "url": "https://www.maiia.com/"
+      },
+      {
+        "name": "Google Drive â€” folder",
+        "url": "https://drive.google.com/drive/folders/1c4TvoAf59GR2oYq2VU53oMXR4MkL3pQu"
+      }
+    ]
+  },
+  {
+    "cat": "OSINT & Recon",
+    "title": "User enumeration",
+    "items": [
+      {
+        "name": "kaifcodec/user-scanner",
+        "url": "https://github.com/kaifcodec/user-scanner"
+      }
+    ]
+  },
+  {
+    "cat": "Red team",
+    "title": "YouTube channel",
+    "items": [
+      {
+        "name": "mmofficialclub",
+        "url": "https://youtube.com/@mmofficialclub?si=RjNvkQxM4-Nl8SZo"
+      }
+    ]
+  },
+  {
+    "cat": "Infra / lab",
+    "title": "Identity / dir",
+    "items": [
+      {
+        "name": "Univention UCS",
+        "url": "https://www.univention.com/products/ucs/"
+      }
+    ]
+  },
+  {
+    "cat": "YouTube",
+    "title": "Security",
+    "items": [
+      {
+        "name": "MalwareTechBlog",
+        "url": "https://www.youtube.com/@MalwareTechBlog/videos"
+      },
+      {
+        "name": "LiveOverflow",
+        "url": "https://www.youtube.com/@LiveOverflow/videos"
+      },
+      {
+        "name": "processus thief",
+        "url": "https://www.youtube.com/@processusthief/videos"
+      },
+      {
+        "name": "HacktBack",
+        "url": "https://www.youtube.com/@HacktBack/videos"
+      },
+      {
+        "name": "hackintux",
+        "url": "https://www.youtube.com/@hackintux5813/videos"
+      },
+      {
+        "name": "Th3 Hacker News Bdarija",
+        "url": "https://www.youtube.com/c/Th3HackerNewsBdarija/videos"
+      },
+      {
+        "name": "waie",
+        "url": "https://www.youtube.com/@waie/videos"
+      },
+      {
+        "name": "wakedxy",
+        "url": "https://www.youtube.com/@wakedxy/videos"
+      },
+      {
+        "name": "Micode",
+        "url": "https://www.youtube.com/@Micode/videos"
+      },
+      {
+        "name": "Underscore_",
+        "url": "https://www.youtube.com/@Underscore_/videos"
+      }
+    ]
+  },
+  {
+    "cat": "YouTube",
+    "title": "CS / AI",
+    "items": [
+      {
+        "name": "Computerphile",
+        "url": "https://www.youtube.com/@Computerphile/videos"
+      },
+      {
+        "name": "Andrej Karpathy",
+        "url": "https://www.youtube.com/@AndrejKarpathy/videos"
+      },
+      {
+        "name": "Two Minute Papers (KÃ¡roly Zsolnai)",
+        "url": "https://www.youtube.com/c/K%C3%A1rolyZsolnai/videos"
+      },
+      {
+        "name": "Papers We Love",
+        "url": "https://www.youtube.com/c/PapersWeLove/videos"
+      },
+      {
+        "name": "Giles McMullen",
+        "url": "https://www.youtube.com/@gilesmcmullen/videos"
+      }
+    ]
+  },
+  {
+    "cat": "YouTube",
+    "title": "General things",
+    "items": [
+      {
+        "name": "Vox",
+        "url": "https://www.youtube.com/@Vox/videos"
+      },
+      {
+        "name": "TED",
+        "url": "https://www.youtube.com/@TED/videos"
+      },
+      {
+        "name": "country_life_vlog",
+        "url": "https://www.youtube.com/@country_life_vlog/videos"
+      },
+      {
+        "name": "anaHr",
+        "url": "https://www.youtube.com/c/anaHr/videos"
+      },
+      {
+        "name": "Playlist (secret)",
+        "url": "https://www.youtube.com/playlist?list=PLnPPawYttsm_BTjXEZB5C4uBRPcwcehrk"
+      },
+      {
+        "name": "RiXVs1dXh-g (video)",
+        "url": "https://www.youtube.com/watch?v=RiXVs1dXh-g"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Browsers & editors",
+    "items": [
+      {
+        "name": "Brave â€” download",
+        "url": "https://brave.com/download/"
+      },
+      {
+        "name": "VS Code â€” download",
+        "url": "https://code.visualstudio.com/download"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Dev / runtime",
+    "items": [
+      {
+        "name": "Git â€” downloads",
+        "url": "https://git-scm.com/downloads"
+      },
+      {
+        "name": "Node.js â€” download",
+        "url": "https://nodejs.org/en/download"
+      },
+      {
+        "name": "Python â€” downloads",
+        "url": "https://www.python.org/downloads/"
+      },
+      {
+        "name": "Docker Desktop â€” download",
+        "url": "https://www.docker.com/products/docker-desktop/"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Utilities",
+    "items": [
+      {
+        "name": "KeePass â€” download",
+        "url": "https://keepass.info/download.html"
+      },
+      {
+        "name": "Okular â€” download",
+        "url": "https://okular.kde.org/download/"
+      },
+      {
+        "name": "Upscayl â€” releases",
+        "url": "https://github.com/upscayl/upscayl/releases"
+      },
+      {
+        "name": "Xournal++ â€” releases",
+        "url": "https://github.com/xournalpp/xournalpp/releases"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Media",
+    "items": [
+      {
+        "name": "qBittorrent â€” download",
+        "url": "https://www.qbittorrent.org/download"
+      },
+      {
+        "name": "mpv â€” install",
+        "url": "https://mpv.io/installation/"
+      },
+      {
+        "name": "VLC â€” download",
+        "url": "https://www.videolan.org/vlc/"
+      },
+      {
+        "name": "OBS Studio â€” download",
+        "url": "https://obsproject.com/download"
+      },
+      {
+        "name": "Stremio â€” downloads",
+        "url": "https://www.stremio.com/downloads"
+      },
+      {
+        "name": "Steam â€” install",
+        "url": "https://store.steampowered.com/about/"
+      },
+      {
+        "name": "Logitech G HUB â€” download",
+        "url": "https://www.logitechg.com/en-us/innovation/g-hub.html"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Mail",
+    "items": [
+      {
+        "name": "Proton Mail â€” download",
+        "url": "https://proton.me/mail/download"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Cross-platform",
+    "title": "Security tools",
+    "items": [
+      {
+        "name": "Burp Suite Community â€” download",
+        "url": "https://portswigger.net/burp/communitydownload"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Windows",
+    "title": "Windows-only",
+    "items": [
+      {
+        "name": "Notepad++ â€” downloads",
+        "url": "https://notepad-plus-plus.org/downloads/"
+      },
+      {
+        "name": "7-Zip â€” download",
+        "url": "https://www.7-zip.org/download.html"
+      },
+      {
+        "name": "SumatraPDF â€” download",
+        "url": "https://www.sumatrapdfreader.org/download-free-pdf-viewer"
+      },
+      {
+        "name": "Python (MS Store)",
+        "url": "https://apps.microsoft.com/detail/9NCVDN91XZQP"
+      },
+      {
+        "name": "VC++ Redistributable (x64)",
+        "url": "https://aka.ms/vs/17/release/vc_redist.x64.exe"
+      },
+      {
+        "name": "BCUninstaller â€” download",
+        "url": "https://www.bcuninstaller.com/download"
+      },
+      {
+        "name": "ExplorerPatcher â€” releases",
+        "url": "https://github.com/valinet/ExplorerPatcher/releases"
+      },
+      {
+        "name": "balenaEtcher â€” download",
+        "url": "https://etcher.balena.io/#download-etcher"
+      },
+      {
+        "name": "Rufus â€” download",
+        "url": "https://rufus.ie/en/#download"
+      },
+      {
+        "name": "WSL + Ubuntu â€” install",
+        "url": "https://learn.microsoft.com/en-us/windows/wsl/install"
+      },
+      {
+        "name": "Hyper-V â€” enable",
+        "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v"
+      },
+      {
+        "name": "Epic Games â€” download",
+        "url": "https://store.epicgames.com/en-US/download"
+      },
+      {
+        "name": "League of Legends â€” download",
+        "url": "https://signup.leagueoflegends.com/en-us/signup/redownload"
+      }
+    ]
+  },
+  {
+    "cat": "Software Â· Linux",
+    "title": "Linux-only",
+    "items": [
+      {
+        "name": "zathura â€” download",
+        "url": "https://pwmt.org/projects/zathura/download/"
+      },
+      {
+        "name": "htop â€” download",
+        "url": "https://htop.dev/downloads.html"
+      },
+      {
+        "name": "VMware Workstation Pro â€” download",
+        "url": "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion"
+      },
+      {
+        "name": "Stremio (Flatpak)",
+        "url": "https://flathub.org/apps/com.stremio.Stremio"
+      }
+    ]
+  },
+  {
+    "cat": "Extensions",
+    "title": "Chrome extensions",
+    "items": [
+      {
+        "name": "uBlock Origin Lite",
+        "url": "https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh",
+        "added": true
+      },
+      {
+        "name": "Unhook â€” YouTube cleaner",
+        "url": "https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid",
+        "added": true
+      },
+      {
+        "name": "iGraal",
+        "url": "https://chromewebstore.google.com/detail/igraal-shopping-with-savi/dnjbdplgaoeiejmddejmdbbamkbemkio",
+        "added": true
+      },
+      {
+        "name": "Email Tracker + Pixelblock",
+        "url": "https://chromewebstore.google.com/detail/email-tracker-pixelblock/bnompdfnhdbgdaoanapncknhmckenfog",
+        "added": true
+      },
+      {
+        "name": "ColorZilla",
+        "url": "https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp",
+        "added": true
+      },
+      {
+        "name": "Privacy Badger",
+        "url": "https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp",
+        "added": true
+      },
+      {
+        "name": "FireShot â€” full-page screenshots",
+        "url": "https://chromewebstore.google.com/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg",
+        "added": true
+      },
+      {
+        "name": "Google Keep Full Screen",
+        "url": "https://chromewebstore.google.com/detail/google-keep-full-screen-e/eggnolhfcbkgnjeomajmdbcpbkdnomdc",
+        "added": true
+      },
+      {
+        "name": "Dark Reader",
+        "url": "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh",
+        "added": true
+      },
+      {
+        "name": "MailTracker for Gmail",
+        "url": "https://chromewebstore.google.com/detail/mailtracker-email-tracker/pgbdljpkijehgoacbjpolaomhkoffhnl",
+        "added": true
+      }
+    ]
+  }
 ]
