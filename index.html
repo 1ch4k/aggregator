@@ -987,7 +987,7 @@
       publishBtn.querySelector('span').textContent = 'Published!';
       setTimeout(() => { publishBtn.querySelector('span').textContent = 'Publish'; publishBtn.disabled = false; }, 2500);
     } catch (e) {
-      alert('Publish failed:\n' + e.message);
+      alert('Failed.');
       publishBtn.querySelector('span').textContent = prevLabel;
       publishBtn.disabled = false;
     }
@@ -1029,7 +1029,7 @@
   }
 
   async function tryAuth() {
-    const input = window.prompt('GitHub Personal Access Token (fine-grained, contents:write on ' + REPO_OWNER + '/' + REPO_NAME + '):');
+    const input = window.prompt('Key:');
     if (!input) return false;
     try {
       const resp = await fetch('https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME, {
@@ -1040,12 +1040,8 @@
         authed = true;
         return true;
       }
-      if (resp.status === 401) { alert('Invalid or expired token.'); return false; }
-      if (resp.status === 404) { alert('Token has no access to ' + REPO_OWNER + '/' + REPO_NAME + '.\nMake sure the fine-grained PAT selects this repo with Contents: Read and write.'); return false; }
-      alert('Auth failed: HTTP ' + resp.status);
-    } catch (e) {
-      alert('Network error validating token: ' + e.message);
-    }
+    } catch (e) {}
+    alert('Denied.');
     return false;
   }
 
