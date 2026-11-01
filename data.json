@@ -184,10 +184,6 @@
                       {
                           "name":  "CERT — VU#976247",
                           "url":  "https://www.kb.cert.org/vuls/id/976247"
-                      },
-                      {
-                          "name":  "Openwall oss-security",
-                          "url":  "https://www.openwall.com/lists/oss-security/2026/05/07/8"
                       }
                   ]
     },
@@ -270,12 +266,19 @@
                           "url":  "https://projectblack.io/blog/local-ai-for-cyber-security/"
                       },
                       {
-                          "name":  "FuzzingLabs/mcp-security-hub",
-                          "url":  "https://github.com/FuzzingLabs/mcp-security-hub"
+                          "name":  "Hermes Agent desktop (Nous Research)",
+                          "url":  "https://hermes-agent.nousresearch.com",
+                          "added":  true
                       },
                       {
-                          "name":  "hermes-agent",
-                          "url":  "https://hermes-agent.org/"
+                          "name":  "togg53192-cmd/jailbreaks",
+                          "url":  "https://github.com/togg53192-cmd/jailbreaks",
+                          "added":  true
+                      },
+                      {
+                          "name":  "YuJunZhiXue/dsh-purge",
+                          "url":  "https://github.com/YuJunZhiXue/dsh-purge",
+                          "added":  true
                       },
                       {
                           "name":  "Moak.ai",
@@ -302,11 +305,6 @@
                       {
                           "name":  "HF LLM course ch.1",
                           "url":  "https://huggingface.co/learn/llm-course/chapter1/1"
-                      },
-                      {
-                          "name":  "DeepHat (HuggingFace org)",
-                          "url":  "https://huggingface.co/DeepHat",
-                          "added":  true
                       }
                   ]
     },
@@ -343,10 +341,6 @@
                       {
                           "name":  "FCSC",
                           "url":  "https://fcsc.fr/fr/"
-                      },
-                      {
-                          "name":  "404 CTF",
-                          "url":  "https://www.404ctf.fr"
                       },
                       {
                           "name":  "crackmes.one",
@@ -391,12 +385,8 @@
                           "url":  "https://roadmap.sh/"
                       },
                       {
-                          "name":  "Fortinet FCF cybersec",
-                          "url":  "https://training.fortinet.com/local/staticpage/view.php?page=fcf_cybersecurity"
-                      },
-                      {
-                          "name":  "Fortinet FCF library (freelance)",
-                          "url":  "https://training.fortinet.com/local/library/?category=Certification%3AFCF_Cybersecurity"
+                          "name":  "Fortinet NSE 1 — cybersecurity",
+                          "url":  "https://training.fortinet.com/local/staticpage/view.php?page=nse_1"
                       },
                       {
                           "name":  "Securiti — DSPM cert",
@@ -444,6 +434,16 @@
                       {
                           "name":  "Freedium mirror",
                           "url":  "https://freedium-mirror.cfd/"
+                      }
+                  ]
+    },
+    {
+        "cat":  "Learning",
+        "title":  "Books",
+        "items":  [
+                      {
+                          "name":  "Books — Google Drive folder",
+                          "url":  "https://drive.google.com/drive/folders/1c4TvoAf59GR2oYq2VU53oMXR4MkL3pQu"
                       }
                   ]
     },
@@ -512,8 +512,9 @@
                           "url":  "https://media.defcon.org/"
                       },
                       {
-                          "name":  "DEF CON 34 — DPRK laptop farm PDF",
-                          "url":  "https://media.defcon.org/DEF%20CON%2034/DEF%20CON%2034%20presentations/DEF%20CON%2034%20presentations/DEF%20CON%2034%20-%20Heiner%20Garc%C3%ADa%2C%20Mauro%20Eldritch%20-%20Smile%2C%20you\u0027re%20on%20camera%20Livestreaming%20from%20North%20Korea\u0027s%20IT%20workers%20laptop%20farm%20-%20Are%20v1.pdf"
+                          "name":  "GreHack (Grenoble)",
+                          "url":  "https://grehack.fr/",
+                          "added":  true
                       }
                   ]
     },
@@ -575,7 +576,7 @@
                       },
                       {
                           "name":  "RuTracker",
-                          "url":  "https://rutracker.org"
+                          "url":  "https://rutracker.org/forum/index.php"
                       },
                       {
                           "name":  "massgrave — Win10 links",
@@ -584,10 +585,6 @@
                       {
                           "name":  "GenP (Adobe)",
                           "url":  "https://github.com/TheMythologist/GenP"
-                      },
-                      {
-                          "name":  "Boycott (TWN)",
-                          "url":  "https://boycott.thewitness.news/browse/1"
                       }
                   ]
     },
@@ -612,16 +609,11 @@
                       {
                           "name":  "bbradar",
                           "url":  "https://bbradar.io/"
-                      }
-                  ]
-    },
-    {
-        "cat":  "AI tools",
-        "title":  "Writing \u0026 language",
-        "items":  [
+                      },
                       {
-                          "name":  "LanguageTool",
-                          "url":  "https://languagetool.org/"
+                          "name":  "awesome-freellm-apis",
+                          "url":  "https://github.com/open-free-llm-api/awesome-freellm-apis",
+                          "added":  true
                       }
                   ]
     },
@@ -634,16 +626,8 @@
                           "url":  "https://xkcd.com/"
                       },
                       {
-                          "name":  "Habous — Maroc prayer times",
-                          "url":  "https://habous.gov.ma/prieres/index.php"
-                      },
-                      {
                           "name":  "Maiia",
                           "url":  "https://www.maiia.com/"
-                      },
-                      {
-                          "name":  "Google Drive — folder",
-                          "url":  "https://drive.google.com/drive/folders/1c4TvoAf59GR2oYq2VU53oMXR4MkL3pQu"
                       }
                   ]
     },
@@ -654,26 +638,6 @@
                       {
                           "name":  "kaifcodec/user-scanner",
                           "url":  "https://github.com/kaifcodec/user-scanner"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Red team",
-        "title":  "YouTube channel",
-        "items":  [
-                      {
-                          "name":  "mmofficialclub",
-                          "url":  "https://youtube.com/@mmofficialclub?si=RjNvkQxM4-Nl8SZo"
-                      }
-                  ]
-    },
-    {
-        "cat":  "Infra / lab",
-        "title":  "Identity / dir",
-        "items":  [
-                      {
-                          "name":  "Univention UCS",
-                          "url":  "https://www.univention.com/products/ucs/"
                       }
                   ]
     },
@@ -720,6 +684,11 @@
                       {
                           "name":  "Underscore_",
                           "url":  "https://www.youtube.com/@Underscore_/videos"
+                      },
+                      {
+                          "name":  "Cyber Ryan",
+                          "url":  "https://www.youtube.com/@cyberryan/videos",
+                          "added":  true
                       }
                   ]
     },
@@ -770,12 +739,18 @@
                           "url":  "https://www.youtube.com/c/anaHr/videos"
                       },
                       {
-                          "name":  "Playlist (secret)",
+                          "name":  "مقاطع مفيدة في عالم الكمبيوتر (PC)",
                           "url":  "https://www.youtube.com/playlist?list=PLnPPawYttsm_BTjXEZB5C4uBRPcwcehrk"
-                      },
+                      }
+                  ]
+    },
+    {
+        "cat":  "YouTube",
+        "title":  "E-commerce",
+        "items":  [
                       {
-                          "name":  "RiXVs1dXh-g (video)",
-                          "url":  "https://www.youtube.com/watch?v=RiXVs1dXh-g"
+                          "name":  "mmofficialclub",
+                          "url":  "https://www.youtube.com/@mmofficialclub/videos"
                       }
                   ]
     },
@@ -798,18 +773,6 @@
         "title":  "Dev / runtime",
         "items":  [
                       {
-                          "name":  "Git — downloads",
-                          "url":  "https://git-scm.com/downloads"
-                      },
-                      {
-                          "name":  "Node.js — download",
-                          "url":  "https://nodejs.org/en/download"
-                      },
-                      {
-                          "name":  "Python — downloads",
-                          "url":  "https://www.python.org/downloads/"
-                      },
-                      {
                           "name":  "Docker Desktop — download",
                           "url":  "https://www.docker.com/products/docker-desktop/"
                       }
@@ -822,10 +785,6 @@
                       {
                           "name":  "KeePass — download",
                           "url":  "https://keepass.info/download.html"
-                      },
-                      {
-                          "name":  "Okular — download",
-                          "url":  "https://okular.kde.org/download/"
                       },
                       {
                           "name":  "Upscayl — releases",
@@ -864,10 +823,6 @@
                       {
                           "name":  "Steam — install",
                           "url":  "https://store.steampowered.com/about/"
-                      },
-                      {
-                          "name":  "Logitech G HUB — download",
-                          "url":  "https://www.logitechg.com/en-us/innovation/g-hub.html"
                       }
                   ]
     },
@@ -908,16 +863,9 @@
                           "url":  "https://www.sumatrapdfreader.org/download-free-pdf-viewer"
                       },
                       {
-                          "name":  "Python (MS Store)",
-                          "url":  "https://apps.microsoft.com/detail/9NCVDN91XZQP"
-                      },
-                      {
-                          "name":  "VC++ Redistributable (x64)",
-                          "url":  "https://aka.ms/vs/17/release/vc_redist.x64.exe"
-                      },
-                      {
-                          "name":  "BCUninstaller — download",
-                          "url":  "https://www.bcuninstaller.com/download"
+                          "name":  "HWMonitor — download",
+                          "url":  "https://www.cpuid.com/softwares/hwmonitor.html",
+                          "added":  true
                       },
                       {
                           "name":  "ExplorerPatcher — releases",
@@ -932,8 +880,12 @@
                           "url":  "https://rufus.ie/en/#download"
                       },
                       {
-                          "name":  "WSL + Ubuntu — install",
-                          "url":  "https://learn.microsoft.com/en-us/windows/wsl/install"
+                          "name":  "WSL + Arch — install",
+                          "url":  "https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL"
+                      },
+                      {
+                          "name":  "VMware Workstation Pro — download",
+                          "url":  "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion"
                       },
                       {
                           "name":  "Hyper-V — enable",
@@ -962,10 +914,6 @@
                           "url":  "https://htop.dev/downloads.html"
                       },
                       {
-                          "name":  "VMware Workstation Pro — download",
-                          "url":  "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion"
-                      },
-                      {
                           "name":  "Stremio (Flatpak)",
                           "url":  "https://flathub.org/apps/com.stremio.Stremio"
                       }
@@ -987,12 +935,7 @@
                       },
                       {
                           "name":  "iGraal",
-                          "url":  "https://chromewebstore.google.com/detail/igraal-shopping-with-savi/dnjbdplgaoeiejmddejmdbbamkbemkio",
-                          "added":  true
-                      },
-                      {
-                          "name":  "Email Tracker + Pixelblock",
-                          "url":  "https://chromewebstore.google.com/detail/email-tracker-pixelblock/bnompdfnhdbgdaoanapncknhmckenfog",
+                          "url":  "https://chromewebstore.google.com/detail/igraal-shopping-with-savi/kmhkepipobnjllejbafajoemahjejdcm",
                           "added":  true
                       },
                       {
@@ -1011,11 +954,6 @@
                           "added":  true
                       },
                       {
-                          "name":  "Google Keep Full Screen",
-                          "url":  "https://chromewebstore.google.com/detail/google-keep-full-screen-e/eggnolhfcbkgnjeomajmdbcpbkdnomdc",
-                          "added":  true
-                      },
-                      {
                           "name":  "Dark Reader",
                           "url":  "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh",
                           "added":  true
@@ -1023,6 +961,16 @@
                       {
                           "name":  "MailTracker for Gmail",
                           "url":  "https://chromewebstore.google.com/detail/mailtracker-email-tracker/pgbdljpkijehgoacbjpolaomhkoffhnl",
+                          "added":  true
+                      },
+                      {
+                          "name":  "Hola VPN — website unblocker",
+                          "url":  "https://chromewebstore.google.com/detail/hola-vpn-your-website-unb/gkojfkhlekighikafcpjkiklfbnlmeio",
+                          "added":  true
+                      },
+                      {
+                          "name":  "Web Paint — page marker & editor",
+                          "url":  "https://chromewebstore.google.com/detail/web-paint-page-marker-edi/mnopmeepcnldaopgndiielmfoblaennk",
                           "added":  true
                       }
                   ]

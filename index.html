@@ -179,6 +179,7 @@
   .card .preview { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
   .card .preview li { font-size: 13.5px; line-height: 1.35; color: var(--fg); opacity: 0.92; }
   .card .preview .more { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .card .preview .u { display: block; color: var(--muted); font-size: 11.5px; word-break: break-all; }
 
   /* Modal — Keep-style centered expansion */
   .scrim {
@@ -1099,10 +1100,13 @@
   function render() {
     grid.innerHTML = '';
     let shown = 0;
+    const norm = s => (s || '').toLowerCase().replace(/[\s\-_.\/:?#=&@+%]+/g, ' ');
+    const terms = norm(query).split(' ').filter(Boolean);
+    const hits = s => { const h = norm(s); return terms.every(t => h.includes(t)); };
     DATA.forEach((card, idx) => {
       if (activeCat !== 'All' && card.cat !== activeCat) return;
-      const items = query
-        ? card.items.filter(i => (i.name + ' ' + (i.url||'') + ' ' + card.title + ' ' + card.cat).toLowerCase().includes(query))
+      const items = terms.length
+        ? card.items.filter(i => hits(i.name + ' ' + (i.url||'') + ' ' + card.title + ' ' + card.cat))
         : card.items;
       if (query && !items.length) return;
       shown += items.length;
@@ -1116,7 +1120,7 @@
         <ul class="preview">${
           items.length === 0
             ? '<li class="more">Empty — open to add links</li>'
-            : preview.map(i => `<li>${esc(i.name)}</li>`).join('') + (extra > 0 ? `<li class="more">+ ${extra} more</li>` : '')
+            : preview.map(i => `<li>${esc(i.name)}${terms.length && i.url && !hits(i.name + ' ' + card.title + ' ' + card.cat) ? `<span class="u">${esc(i.url.replace(/^https?:\/\/(www\.)?/, ''))}</span>` : ''}</li>`).join('') + (extra > 0 ? `<li class="more">+ ${extra} more</li>` : '')
         }</ul>
       `;
       el.addEventListener('click', () => openModal(idx));
