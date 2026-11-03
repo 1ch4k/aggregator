@@ -246,6 +246,15 @@
     transition: background 0.2s ease, color 0.2s ease;
   }
   .modal .close:hover { background: var(--chip); color: var(--fg); }
+  .modal .share {
+    position: sticky; top: -22px; float: right; margin-right: 6px;
+    background: transparent; color: var(--muted); border: 1px solid var(--border);
+    font: inherit; font-size: 12.5px; cursor: pointer; padding: 4px 12px;
+    border-radius: 999px; line-height: 1.2;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .modal .share:hover { background: var(--chip); color: var(--fg); }
+  .modal .share.copied { color: var(--accent); border-color: var(--accent); }
 
   /* Editable title + category inputs */
   .m-title, .m-cat {
@@ -455,6 +464,7 @@
 <div class="scrim" id="scrim" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal" id="modal">
     <button class="close" id="closeBtn" aria-label="Close">&times;</button>
+    <button class="share" id="shareBtn" title="Copy a link to this card">Copy link</button>
     <input class="m-title" id="mTitle" placeholder="Title" readonly>
     <input class="m-cat" id="mCat" placeholder="Category" list="catList" readonly>
     <datalist id="catList"></datalist>
@@ -952,6 +962,7 @@
     }
     renderChips();
     render();
+    openFromUrl();
   }
 
   async function publishToGitHub() {
@@ -1131,9 +1142,39 @@
   }
 
   // --- Modal ---
+  const slug = t => (t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const shareBtn = document.getElementById('shareBtn');
+  function cardUrl(idx) {
+    const u = new URL(location.href);
+    u.hash = '';
+    if (idx >= 0 && DATA[idx]) u.searchParams.set('card', slug(DATA[idx].title));
+    else u.searchParams.delete('card');
+    return u.toString();
+  }
+  function setCardParam(idx) {
+    const u = new URL(cardUrl(idx));
+    u.hash = location.hash;
+    history.replaceState(null, '', u);
+  }
+  function openFromUrl() {
+    const want = new URLSearchParams(location.search).get('card');
+    if (!want) return;
+    const idx = DATA.findIndex(c => slug(c.title) === want);
+    if (idx >= 0) openModal(idx); else setCardParam(-1);
+  }
+  shareBtn.addEventListener('click', async () => {
+    const url = cardUrl(currentIdx);
+    try { await navigator.clipboard.writeText(url); }
+    catch (e) { prompt('Copy this link:', url); return; }
+    shareBtn.textContent = 'Copied!';
+    shareBtn.classList.add('copied');
+    setTimeout(() => { shareBtn.textContent = 'Copy link'; shareBtn.classList.remove('copied'); }, 1600);
+  });
+
   function openModal(idx) {
     currentIdx = idx;
     editingLink = -1;
+    setCardParam(idx);
     renderModal();
     scrim.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1147,6 +1188,7 @@
     delCardBtn.textContent = 'Delete card';
     setTimeout(() => scrim.classList.remove('open'), 300);
     currentIdx = -1;
+    setCardParam(-1);
   }
   function renderModal() {
     if (currentIdx < 0 || currentIdx >= DATA.length) { closeModal(); return; }
@@ -1184,6 +1226,7 @@
   mTitle.addEventListener('input', () => {
     if (currentIdx < 0) return;
     DATA[currentIdx].title = mTitle.value || 'Untitled';
+    setCardParam(currentIdx);
     saveData(); render(); renderChips();
   });
   mCat.addEventListener('input', () => {

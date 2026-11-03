@@ -116,10 +116,6 @@
         "title":  "Agentic / AI red-cell",
         "items":  [
                       {
-                          "name":  "awarexone/Agentic-Bug-Hunter",
-                          "url":  "https://github.com/awarexone/Agentic-Bug-Hunter"
-                      },
-                      {
                           "name":  "SnailSploit/Claude-Red",
                           "url":  "https://github.com/SnailSploit/Claude-Red"
                       },
@@ -134,10 +130,6 @@
                       {
                           "name":  "elder-plinius/t3mp3st",
                           "url":  "https://github.com/elder-plinius/t3mp3st"
-                      },
-                      {
-                          "name":  "uphiago/recon-skills",
-                          "url":  "https://github.com/uphiago/recon-skills/"
                       },
                       {
                           "name":  "STARX33/LAAF",
@@ -234,6 +226,29 @@
                       {
                           "name":  "RevShells generator",
                           "url":  "https://www.revshells.com/"
+                      }
+                  ]
+    },
+    {
+        "cat":  "Bug bounty",
+        "title":  "Bug bounty",
+        "items":  [
+                      {
+                          "name":  "arkadiyt/bounty-targets-data — program scopes",
+                          "url":  "https://github.com/arkadiyt/bounty-targets-data",
+                          "added":  true
+                      },
+                      {
+                          "name":  "bbradar — new bug bounty programs",
+                          "url":  "https://bbradar.io/"
+                      },
+                      {
+                          "name":  "awarexone/Agentic-Bug-Hunter",
+                          "url":  "https://github.com/awarexone/Agentic-Bug-Hunter"
+                      },
+                      {
+                          "name":  "uphiago/recon-skills",
+                          "url":  "https://github.com/uphiago/recon-skills/"
                       }
                   ]
     },
@@ -605,10 +620,6 @@
                       {
                           "name":  "ArtCraft apps",
                           "url":  "https://getartcraft.com/apps"
-                      },
-                      {
-                          "name":  "bbradar",
-                          "url":  "https://bbradar.io/"
                       },
                       {
                           "name":  "awesome-freellm-apis",
