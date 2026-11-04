@@ -766,6 +766,27 @@
                   ]
     },
     {
+        "cat":  "YouTube",
+        "title":  "Hacker News picks",
+        "items":  [
+                      {
+                          "name":  "HackerTV — HN videos 24/7",
+                          "url":  "https://hackertv.org/",
+                          "added":  true
+                      },
+                      {
+                          "name":  "HackerTube",
+                          "url":  "https://hackertube.org/",
+                          "added":  true
+                      },
+                      {
+                          "name":  "hackertube.io — HN videos by topic",
+                          "url":  "https://hackertube.io/",
+                          "added":  true
+                      }
+                  ]
+    },
+    {
         "cat":  "Software · Cross-platform",
         "title":  "Browsers \u0026 editors",
         "items":  [
